@@ -1,0 +1,649 @@
+﻿Sample,Rep,Set,percentage_antho,Antho_type,Antho_short_name,treatment,Concentration_mg_berry
+B1R2,1,Harvest,5.59,Delphinidin-3-glucoside,D3G,1,0.036350209
+B1R2,2,Harvest,5.52,Delphinidin-3-glucoside,D3G,1,0.030829467
+B1R2,3,Harvest,5.7,Delphinidin-3-glucoside,D3G,1,0.033326214
+B1R2,1,1st point,6.25,Delphinidin-3-glucoside,D3G,1,0.016870069
+B1R2,2,1st point,6.1,Delphinidin-3-glucoside,D3G,1,0.01505657
+B1R2,3,1st point,5.73,Delphinidin-3-glucoside,D3G,1,0.012682011
+B1R2,1,Harvest,0.88,Cyanindin-3-glucoside,C3G,1,0.005703563
+B1R2,2,Harvest,0.91,Cyanindin-3-glucoside,C3G,1,0.005109758
+B1R2,3,Harvest,0.95,Cyanindin-3-glucoside,C3G,1,0.00553515
+B1R2,1,1st point,1.91,Cyanindin-3-glucoside,C3G,1,0.005169044
+B1R2,2,1st point,1.89,Cyanindin-3-glucoside,C3G,1,0.004662961
+B1R2,3,1st point,2.02,Cyanindin-3-glucoside,C3G,1,0.004475887
+B1R2,1,Harvest,4.66,Petunidin-3-glucoside,Pet3G,1,0.03031917
+B1R2,2,Harvest,4.7,Petunidin-3-glucoside,Pet3G,1,0.026285549
+B1R2,3,Harvest,4.88,Petunidin-3-glucoside,Pet3G,1,0.028516715
+B1R2,1,1st point,5.24,Petunidin-3-glucoside,Pet3G,1,0.01415841
+B1R2,2,1st point,5.15,Petunidin-3-glucoside,Pet3G,1,0.012703863
+B1R2,3,1st point,4.94,Petunidin-3-glucoside,Pet3G,1,0.010931829
+B1R2,1,Harvest,4.88,Peonidin-3-glucoside,Peo3G,1,0.031726164
+B1R2,2,Harvest,4.92,Peonidin-3-glucoside,Peo3G,1,0.027479441
+B1R2,3,Harvest,5.23,Peonidin-3-glucoside,Peo3G,1,0.030569061
+B1R2,1,1st point,6.48,Peonidin-3-glucoside,Peo3G,1,0.017506442
+B1R2,2,1st point,6.33,Peonidin-3-glucoside,Peo3G,1,0.015620375
+B1R2,3,1st point,6.51,Peonidin-3-glucoside,Peo3G,1,0.014413528
+B1R2,1,Harvest,41.65,Malvidin-3-glucoside,M3G,1,0.270878885
+B1R2,2,Harvest,42.17,Malvidin-3-glucoside,M3G,1,0.235640374
+B1R2,3,Harvest,41.82,Malvidin-3-glucoside,M3G,1,0.244522082
+B1R2,1,1st point,36.24,Malvidin-3-glucoside,M3G,1,0.097901638
+B1R2,2,1st point,35.47,Malvidin-3-glucoside,M3G,1,0.087560775
+B1R2,3,1st point,35.58,Malvidin-3-glucoside,M3G,1,0.078784633
+B1R2,1,Harvest,1.36,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.008865161
+B1R2,2,Harvest,1.38,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.007717711
+B1R2,3,Harvest,1.49,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.008703244
+B1R2,1,1st point,1.99,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.005383694
+B1R2,2,1st point,1.98,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.004881522
+B1R2,3,1st point,1.96,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.004337732
+B1R2,1,Harvest,0.45,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002922681
+B1R2,2,Harvest,0.5,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002787887
+B1R2,3,Harvest,0.47,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002739967
+B1R2,1,1st point,1.01,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002727928
+B1R2,2,1st point,1.02,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002528486
+B1R2,3,1st point,1.15,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002556219
+B1R2,1,Harvest,1.85,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.012059865
+B1R2,2,Harvest,1.92,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.010747048
+B1R2,3,Harvest,2,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011677417
+B1R2,1,1st point,2.7,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.007285239
+B1R2,2,1st point,2.85,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.00704272
+B1R2,3,1st point,2.79,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.006181906
+B1R2,1,Harvest,2.65,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.017224361
+B1R2,2,Harvest,2.77,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.015465397
+B1R2,3,Harvest,2.76,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.016166178
+B1R2,1,1st point,3.96,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.01068546
+B1R2,2,1st point,4.18,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.010315527
+B1R2,3,1st point,4.21,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.009331467
+B1R2,1,Harvest,27.6,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.179459039
+B1R2,2,Harvest,27.13,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.151601197
+B1R2,3,Harvest,26.74,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.156368778
+B1R2,1,1st point,25.56,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.069049335
+B1R2,2,1st point,26.21,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.064701268
+B1R2,3,1st point,26.51,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.058702368
+B1R2,1,Harvest,1.67,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.010848874
+B1R2,2,Harvest,1.63,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.009135077
+B1R2,3,Harvest,1.62,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.009474524
+B1R2,1,1st point,2.77,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.00748036
+B1R2,2,1st point,2.9,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.007158351
+B1R2,3,1st point,2.76,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006101413
+B1R2,1,Harvest,6.76,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.043956749
+B1R2,2,Harvest,6.44,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.035993026
+B1R2,3,Harvest,6.36,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.03716957
+B1R2,1,1st point,5.88,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.015894464
+B1R2,2,1st point,5.93,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.01464518
+B1R2,3,1st point,5.85,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.012958487
+B1R3,1,Harvest,8.66,Delphinidin-3-glucoside,D3G,1,0.036604346
+B1R3,2,Harvest,7.8,Delphinidin-3-glucoside,D3G,1,0.034243158
+B1R3,3,Harvest,7.66,Delphinidin-3-glucoside,D3G,1,0.02866113
+B1R3,1,1st point,9.7,Delphinidin-3-glucoside,D3G,1,0.021917439
+B1R3,2,1st point,9.27,Delphinidin-3-glucoside,D3G,1,0.018090257
+B1R3,3,1st point,8.6,Delphinidin-3-glucoside,D3G,1,0.017511236
+B1R3,1,Harvest,1.21,Cyanindin-3-glucoside,C3G,1,0.005097358
+B1R3,2,Harvest,1.25,Cyanindin-3-glucoside,C3G,1,0.005508225
+B1R3,3,Harvest,1.3,Cyanindin-3-glucoside,C3G,1,0.004848184
+B1R3,1,1st point,2.74,Cyanindin-3-glucoside,C3G,1,0.006194737
+B1R3,2,1st point,2.76,Cyanindin-3-glucoside,C3G,1,0.005380795
+B1R3,3,1st point,2.61,Cyanindin-3-glucoside,C3G,1,0.005322017
+B1R3,1,Harvest,6.79,Petunidin-3-glucoside,Pet3G,1,0.02868637
+B1R3,2,Harvest,6.39,Petunidin-3-glucoside,Pet3G,1,0.028077765
+B1R3,3,Harvest,6.3,Petunidin-3-glucoside,Pet3G,1,0.023565239
+B1R3,1,1st point,7.03,Petunidin-3-glucoside,Pet3G,1,0.015891821
+B1R3,2,1st point,7.04,Petunidin-3-glucoside,Pet3G,1,0.013732488
+B1R3,3,1st point,6.66,Petunidin-3-glucoside,Pet3G,1,0.013563579
+B1R3,1,Harvest,5.05,Peonidin-3-glucoside,Peo3G,1,0.021342835
+B1R3,2,Harvest,5.09,Peonidin-3-glucoside,Peo3G,1,0.0223524
+B1R3,3,Harvest,5.15,Peonidin-3-glucoside,Peo3G,1,0.019247513
+B1R3,1,1st point,7.08,Peonidin-3-glucoside,Peo3G,1,0.015993899
+B1R3,2,1st point,7.14,Peonidin-3-glucoside,Peo3G,1,0.013930276
+B1R3,3,1st point,6.93,Peonidin-3-glucoside,Peo3G,1,0.014109878
+B1R3,1,Harvest,39.16,Malvidin-3-glucoside,M3G,1,0.165505139
+B1R3,2,Harvest,39.68,Malvidin-3-glucoside,M3G,1,0.174268425
+B1R3,3,Harvest,39.92,Malvidin-3-glucoside,M3G,1,0.149326225
+B1R3,1,1st point,30.92,Malvidin-3-glucoside,M3G,1,0.069887221
+B1R3,2,1st point,31.31,Malvidin-3-glucoside,M3G,1,0.061083123
+B1R3,3,1st point,32.25,Malvidin-3-glucoside,M3G,1,0.065680019
+B1R3,1,Harvest,2.27,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.009595618
+B1R3,2,Harvest,2.27,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.009971361
+B1R3,3,Harvest,2.2,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.008216777
+B1R3,1,1st point,3.56,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.008055353
+B1R3,2,1st point,3.21,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.006253766
+B1R3,3,1st point,3.08,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.006271391
+B1R3,1,Harvest,0.69,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002906528
+B1R3,2,Harvest,0.66,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002895346
+B1R3,3,Harvest,0.71,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002653055
+B1R3,1,1st point,1.32,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002986914
+B1R3,2,1st point,1.42,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.00276768
+B1R3,3,1st point,1.38,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002805277
+B1R3,1,Harvest,2.74,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011592697
+B1R3,2,Harvest,2.71,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011892077
+B1R3,3,Harvest,2.67,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.009971533
+B1R3,1,1st point,4.01,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.009055303
+B1R3,2,1st point,3.97,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.007737656
+B1R3,3,1st point,3.83,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.007799277
+B1R3,1,Harvest,2.75,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.011608381
+B1R3,2,Harvest,2.86,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.012566279
+B1R3,3,Harvest,2.83,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.010596863
+B1R3,1,1st point,4.47,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.010108359
+B1R3,2,1st point,4.5,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.008776202
+B1R3,3,1st point,4.38,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.008912028
+B1R3,1,Harvest,24,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.101431472
+B1R3,2,Harvest,24.43,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.107290824
+B1R3,3,Harvest,24.36,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.091130004
+B1R3,1,1st point,22.17,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.05011686
+B1R3,2,1st point,22.31,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.043534952
+B1R3,3,1st point,23.02,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.046885656
+B1R3,1,Harvest,1.47,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006224379
+B1R3,2,Harvest,1.47,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006454595
+B1R3,3,Harvest,1.49,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.005558825
+B1R3,1,1st point,2.67,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006041143
+B1R3,2,1st point,2.7,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.005270144
+B1R3,3,1st point,2.69,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.005470858
+B1R3,1,Harvest,5.22,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.022058114
+B1R3,2,Harvest,5.39,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.023659876
+B1R3,3,Harvest,5.42,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.020272286
+B1R3,1,1st point,4.33,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.009785272
+B1R3,2,1st point,4.38,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.008537343
+B1R3,3,1st point,4.58,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.009330135
+B1R4,1,Harvest,8.23,Delphinidin-3-glucoside,D3G,1,0.035400647
+B1R4,2,Harvest,8.04,Delphinidin-3-glucoside,D3G,1,0.036049866
+B1R4,3,Harvest,7.95,Delphinidin-3-glucoside,D3G,1,0.035137204
+B1R4,1,1st point,9.15,Delphinidin-3-glucoside,D3G,1,0.019798834
+B1R4,2,1st point,9.45,Delphinidin-3-glucoside,D3G,1,0.020966365
+B1R4,3,1st point,8.76,Delphinidin-3-glucoside,D3G,1,0.016400893
+B1R4,1,Harvest,1.35,Cyanindin-3-glucoside,C3G,1,0.005824474
+B1R4,2,Harvest,1.31,Cyanindin-3-glucoside,C3G,1,0.005891849
+B1R4,3,Harvest,1.34,Cyanindin-3-glucoside,C3G,1,0.005939869
+B1R4,1,1st point,2.95,Cyanindin-3-glucoside,C3G,1,0.006378266
+B1R4,2,1st point,2.93,Cyanindin-3-glucoside,C3G,1,0.006506194
+B1R4,3,1st point,2.98,Cyanindin-3-glucoside,C3G,1,0.005574113
+B1R4,1,Harvest,6.34,Petunidin-3-glucoside,Pet3G,1,0.02727517
+B1R4,2,Harvest,6.14,Petunidin-3-glucoside,Pet3G,1,0.027535427
+B1R4,3,Harvest,6.28,Petunidin-3-glucoside,Pet3G,1,0.027763865
+B1R4,1,1st point,6.87,Petunidin-3-glucoside,Pet3G,1,0.014874046
+B1R4,2,1st point,6.9,Petunidin-3-glucoside,Pet3G,1,0.015305745
+B1R4,3,1st point,6.64,Petunidin-3-glucoside,Pet3G,1,0.012441924
+B1R4,1,Harvest,5.28,Peonidin-3-glucoside,Peo3G,1,0.022726665
+B1R4,2,Harvest,5.51,Peonidin-3-glucoside,Peo3G,1,0.024671458
+B1R4,3,Harvest,5.55,Peonidin-3-glucoside,Peo3G,1,0.024533145
+B1R4,1,1st point,7.73,Peonidin-3-glucoside,Peo3G,1,0.016741692
+B1R4,2,1st point,7.47,Peonidin-3-glucoside,Peo3G,1,0.016574567
+B1R4,3,1st point,7.58,Peonidin-3-glucoside,Peo3G,1,0.014196182
+B1R4,1,Harvest,39.86,Malvidin-3-glucoside,M3G,1,0.171399076
+B1R4,2,Harvest,38.91,Malvidin-3-glucoside,M3G,1,0.174368742
+B1R4,3,Harvest,39.33,Malvidin-3-glucoside,M3G,1,0.173895734
+B1R4,1,1st point,31.58,Malvidin-3-glucoside,M3G,1,0.068369194
+B1R4,2,1st point,31.09,Malvidin-3-glucoside,M3G,1,0.06899016
+B1R4,3,1st point,31.02,Malvidin-3-glucoside,M3G,1,0.058083297
+B1R4,1,Harvest,2.25,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.009676907
+B1R4,2,Harvest,2.25,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.010104314
+B1R4,3,Harvest,2.25,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.009930836
+B1R4,1,1st point,3.15,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.006815358
+B1R4,2,1st point,3.28,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.007273262
+B1R4,3,1st point,3.38,Delphinidin-3-(6-acetyl) glucoside,D3Gac,1,0.006322354
+B1R4,1,Harvest,0.63,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002698112
+B1R4,2,Harvest,0.64,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002874685
+B1R4,3,Harvest,0.66,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002934972
+B1R4,1,1st point,1.38,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002994399
+B1R4,2,1st point,1.38,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.003070952
+B1R4,3,1st point,1.6,Cyanindin-3-(6-acetyl) glucoside,C3Gac,1,0.002996348
+B1R4,1,Harvest,2.63,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011316775
+B1R4,2,Harvest,2.65,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011892275
+B1R4,3,Harvest,2.64,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.011653478
+B1R4,1,1st point,3.81,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.008253103
+B1R4,2,1st point,3.96,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.008778678
+B1R4,3,1st point,4.04,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,1,0.007570406
+B1R4,1,Harvest,2.79,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.012014461
+B1R4,2,Harvest,3,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.013459236
+B1R4,3,Harvest,2.99,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.013230759
+B1R4,1,1st point,4.37,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.009461985
+B1R4,2,1st point,4.38,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.009720798
+B1R4,3,1st point,4.59,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,1,0.008597413
+B1R4,1,Harvest,23.94,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.102953123
+B1R4,2,Harvest,24.2,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.108427744
+B1R4,3,Harvest,23.98,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.106041185
+B1R4,1,1st point,22.1,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.047829155
+B1R4,2,1st point,22.35,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.049587811
+B1R4,3,1st point,22.44,Malvidin-3-(6-acetyl) glucoside,M3Gac,1,0.042026703
+B1R4,1,Harvest,1.43,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006142674
+B1R4,2,Harvest,1.61,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.007220859
+B1R4,3,Harvest,1.58,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.006983719
+B1R4,1,1st point,2.57,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.005561767
+B1R4,2,1st point,2.53,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.005606622
+B1R4,3,1st point,2.63,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,1,0.00492672
+B1R4,1,Harvest,5.26,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.022608126
+B1R4,2,Harvest,5.72,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.025631343
+B1R4,3,Harvest,5.45,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.024088454
+B1R4,1,1st point,4.34,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.009385228
+B1R4,2,1st point,4.28,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.009502895
+B1R4,3,1st point,4.33,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,1,0.00811236
+B2R1,1,Harvest,7.02,Delphinidin-3-glucoside,D3G,2,0.041848013
+B2R1,2,Harvest,6.5,Delphinidin-3-glucoside,D3G,2,0.035423033
+B2R1,3,Harvest,6.93,Delphinidin-3-glucoside,D3G,2,0.039961257
+B2R1,1,1st point,7.16,Delphinidin-3-glucoside,D3G,2,0.015190719
+B2R1,2,1st point,6.8,Delphinidin-3-glucoside,D3G,2,0.015167081
+B2R1,3,1st point,7.15,Delphinidin-3-glucoside,D3G,2,0.01683911
+B2R1,1,Harvest,1.1,Cyanindin-3-glucoside,C3G,2,0.006579938
+B2R1,2,Harvest,1.08,Cyanindin-3-glucoside,C3G,2,0.005909628
+B2R1,3,Harvest,1.01,Cyanindin-3-glucoside,C3G,2,0.005819555
+B2R1,1,1st point,2.26,Cyanindin-3-glucoside,C3G,2,0.004788313
+B2R1,2,1st point,2,Cyanindin-3-glucoside,C3G,2,0.004448899
+B2R1,3,1st point,2.11,Cyanindin-3-glucoside,C3G,2,0.004978109
+B2R1,1,Harvest,5.4,Petunidin-3-glucoside,Pet3G,2,0.032143698
+B2R1,2,Harvest,5.25,Petunidin-3-glucoside,Pet3G,2,0.02863072
+B2R1,3,Harvest,5.49,Petunidin-3-glucoside,Pet3G,2,0.031647264
+B2R1,1,1st point,5.71,Petunidin-3-glucoside,Pet3G,2,0.012127329
+B2R1,2,1st point,5.57,Petunidin-3-glucoside,Pet3G,2,0.012417042
+B2R1,3,1st point,5.74,Petunidin-3-glucoside,Pet3G,2,0.013518491
+B2R1,1,Harvest,5.05,Peonidin-3-glucoside,Peo3G,2,0.030108466
+B2R1,2,Harvest,4.99,Peonidin-3-glucoside,Peo3G,2,0.027222703
+B2R1,3,Harvest,4.98,Peonidin-3-glucoside,Peo3G,2,0.028727773
+B2R1,1,1st point,6.51,Peonidin-3-glucoside,Peo3G,2,0.013809643
+B2R1,2,1st point,6.33,Peonidin-3-glucoside,Peo3G,2,0.014111293
+B2R1,3,1st point,6.5,Peonidin-3-glucoside,Peo3G,2,0.015303784
+B2R1,1,Harvest,41.38,Malvidin-3-glucoside,M3G,2,0.246549254
+B2R1,2,Harvest,41.42,Malvidin-3-glucoside,M3G,2,0.22573831
+B2R1,3,Harvest,41.34,Malvidin-3-glucoside,M3G,2,0.238312298
+B2R1,1,1st point,34.11,Malvidin-3-glucoside,M3G,2,0.072391498
+B2R1,2,1st point,33.81,Malvidin-3-glucoside,M3G,2,0.07538934
+B2R1,3,1st point,33.76,Malvidin-3-glucoside,M3G,2,0.079541005
+B2R1,1,Harvest,1.67,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.009932913
+B2R1,2,Harvest,1.64,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.008953171
+B2R1,3,Harvest,1.7,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.009817577
+B2R1,1,1st point,2.4,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.005093954
+B2R1,2,1st point,2.36,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.005273411
+B2R1,3,1st point,2.42,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.005703374
+B2R1,1,Harvest,0.47,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002815416
+B2R1,2,Harvest,0.53,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002886516
+B2R1,3,Harvest,0.49,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002800744
+B2R1,1,1st point,1.17,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002482421
+B2R1,2,1st point,1.17,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002606259
+B2R1,3,1st point,1.16,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.00273915
+B2R1,1,Harvest,2.12,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.012620436
+B2R1,2,Harvest,2.1,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.011421865
+B2R1,3,Harvest,2.19,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.012629292
+B2R1,1,1st point,3.25,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.006892268
+B2R1,2,1st point,3.26,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.007271684
+B2R1,3,1st point,3.32,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.00781885
+B2R1,1,Harvest,2.66,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.015845923
+B2R1,2,Harvest,2.66,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.014507245
+B2R1,3,Harvest,2.69,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.015494357
+B2R1,1,1st point,4.08,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.008651864
+B2R1,2,1st point,4.39,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.009790608
+B2R1,3,1st point,4.37,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.010290563
+B2R1,1,Harvest,25.54,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.152186285
+B2R1,2,Harvest,26.28,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.143257454
+B2R1,3,Harvest,25.53,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.147134052
+B2R1,1,1st point,24.92,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.052888051
+B2R1,2,1st point,25.91,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.057773288
+B2R1,3,1st point,25.46,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.059993265
+B2R1,1,Harvest,1.39,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.008264996
+B2R1,2,Harvest,1.43,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.00778758
+B2R1,3,Harvest,1.46,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.008424019
+B2R1,1,1st point,2.8,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.005945283
+B2R1,2,1st point,2.85,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.006358331
+B2R1,3,1st point,2.73,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.006423744
+B2R1,1,Harvest,6.19,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.036895839
+B2R1,2,Harvest,6.11,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.033302979
+B2R1,3,Harvest,6.18,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.035637292
+B2R1,1,1st point,5.64,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.011972156
+B2R1,2,1st point,5.55,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.012381957
+B2R1,3,1st point,5.29,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.012469833
+B2R2,1,Harvest,7.6,Delphinidin-3-glucoside,D3G,2,0.042405145
+B2R2,2,Harvest,7.34,Delphinidin-3-glucoside,D3G,2,0.037070009
+B2R2,3,Harvest,7.9,Delphinidin-3-glucoside,D3G,2,0.040508105
+B2R2,1,1st point,9.25,Delphinidin-3-glucoside,D3G,2,0.032135115
+B2R2,2,1st point,9.38,Delphinidin-3-glucoside,D3G,2,0.02950375
+B2R2,3,1st point,8.06,Delphinidin-3-glucoside,D3G,2,0.023859031
+B2R2,1,Harvest,1.47,Cyanindin-3-glucoside,C3G,2,0.008231076
+B2R2,2,Harvest,1.3,Cyanindin-3-glucoside,C3G,2,0.006585333
+B2R2,3,Harvest,1.59,Cyanindin-3-glucoside,C3G,2,0.008175413
+B2R2,1,1st point,2.69,Cyanindin-3-glucoside,C3G,2,0.009334414
+B2R2,2,1st point,2.6,Cyanindin-3-glucoside,C3G,2,0.008162212
+B2R2,3,1st point,2.41,Cyanindin-3-glucoside,C3G,2,0.007143074
+B2R2,1,Harvest,5.96,Petunidin-3-glucoside,Pet3G,2,0.033297226
+B2R2,2,Harvest,5.84,Petunidin-3-glucoside,Pet3G,2,0.029482097
+B2R2,3,Harvest,6.14,Petunidin-3-glucoside,Pet3G,2,0.031476196
+B2R2,1,1st point,6.69,Petunidin-3-glucoside,Pet3G,2,0.023232652
+B2R2,2,1st point,6.81,Petunidin-3-glucoside,Pet3G,2,0.021411376
+B2R2,3,1st point,6.26,Petunidin-3-glucoside,Pet3G,2,0.018551163
+B2R2,1,Harvest,6.48,Peonidin-3-glucoside,Peo3G,2,0.036192932
+B2R2,2,Harvest,6.13,Peonidin-3-glucoside,Peo3G,2,0.030975542
+B2R2,3,Harvest,6.56,Peonidin-3-glucoside,Peo3G,2,0.033640053
+B2R2,1,1st point,8.2,Peonidin-3-glucoside,Peo3G,2,0.028498194
+B2R2,2,1st point,7.48,Peonidin-3-glucoside,Peo3G,2,0.023533251
+B2R2,3,1st point,7.36,Peonidin-3-glucoside,Peo3G,2,0.021788128
+B2R2,1,Harvest,41.51,Malvidin-3-glucoside,M3G,2,0.231720247
+B2R2,2,Harvest,42.17,Malvidin-3-glucoside,M3G,2,0.213059464
+B2R2,3,Harvest,41.09,Malvidin-3-glucoside,M3G,2,0.210762758
+B2R2,1,1st point,31.27,Malvidin-3-glucoside,M3G,2,0.108662351
+B2R2,2,1st point,31.83,Malvidin-3-glucoside,M3G,2,0.100113905
+B2R2,3,1st point,33.53,Malvidin-3-glucoside,M3G,2,0.099294587
+B2R2,1,Harvest,1.81,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.010109728
+B2R2,2,Harvest,1.74,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.008789118
+B2R2,3,Harvest,1.78,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.009124729
+B2R2,1,1st point,3.02,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.010503032
+B2R2,2,1st point,3.01,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.009462193
+B2R2,3,1st point,2.55,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.00753761
+B2R2,1,Harvest,0.59,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.003274449
+B2R2,2,Harvest,0.56,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002837776
+B2R2,3,Harvest,0.62,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.003159966
+B2R2,1,1st point,1.11,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.003854617
+B2R2,2,1st point,1.12,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.003506649
+B2R2,3,1st point,1.13,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.003335622
+B2R2,1,Harvest,2.16,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.012048516
+B2R2,2,Harvest,2.17,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.010946262
+B2R2,3,Harvest,2.24,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.011515733
+B2R2,1,1st point,3.55,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.012324913
+B2R2,2,1st point,3.65,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.011466317
+B2R2,3,1st point,3.28,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.009707557
+B2R2,1,Harvest,2.84,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.015871536
+B2R2,2,Harvest,2.83,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.014278385
+B2R2,3,Harvest,2.89,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.014831881
+B2R2,1,1st point,4.62,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.016043749
+B2R2,2,1st point,4.27,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.013437226
+B2R2,3,1st point,4.37,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.012932388
+B2R2,1,Harvest,22.31,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.124568136
+B2R2,2,Harvest,22.82,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.115306938
+B2R2,3,Harvest,21.91,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.112406434
+B2R2,1,1st point,21.47,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.07461527
+B2R2,2,1st point,21.9,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.06885895
+B2R2,3,1st point,23,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.068112806
+B2R2,1,Harvest,1.5,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.008355224
+B2R2,2,Harvest,1.46,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.007373887
+B2R2,3,Harvest,1.59,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.008145612
+B2R2,1,1st point,3.18,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.011034772
+B2R2,2,1st point,2.95,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.009264315
+B2R2,3,1st point,2.88,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.00853756
+B2R2,1,Harvest,5.76,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.032170128
+B2R2,2,Harvest,5.64,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.028484864
+B2R2,3,Harvest,5.7,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.029229228
+B2R2,1,1st point,4.97,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.017283945
+B2R2,2,1st point,5.01,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.015761386
+B2R2,3,1st point,5.17,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.015320757
+B2R3,1,Harvest,6.38,Delphinidin-3-glucoside,D3G,2,0.031645071
+B2R3,2,Harvest,6.95,Delphinidin-3-glucoside,D3G,2,0.03298231
+B2R3,3,Harvest,6.47,Delphinidin-3-glucoside,D3G,2,0.028800538
+B2R3,1,1st point,7.98,Delphinidin-3-glucoside,D3G,2,0.015010792
+B2R3,2,1st point,7.01,Delphinidin-3-glucoside,D3G,2,0.01078859
+B2R3,3,1st point,6.8,Delphinidin-3-glucoside,D3G,2,0.009450573
+B2R3,1,Harvest,1.04,Cyanindin-3-glucoside,C3G,2,0.00514453
+B2R3,2,Harvest,1.24,Cyanindin-3-glucoside,C3G,2,0.005908439
+B2R3,3,Harvest,1.14,Cyanindin-3-glucoside,C3G,2,0.005090852
+B2R3,1,1st point,2.57,Cyanindin-3-glucoside,C3G,2,0.004839116
+B2R3,2,1st point,2.52,Cyanindin-3-glucoside,C3G,2,0.003884341
+B2R3,3,1st point,2.61,Cyanindin-3-glucoside,C3G,2,0.003625963
+B2R3,1,Harvest,5.34,Petunidin-3-glucoside,Pet3G,2,0.026502272
+B2R3,2,Harvest,5.64,Petunidin-3-glucoside,Pet3G,2,0.026754053
+B2R3,3,Harvest,5.49,Petunidin-3-glucoside,Pet3G,2,0.024418413
+B2R3,1,1st point,6.29,Petunidin-3-glucoside,Pet3G,2,0.011827719
+B2R3,2,1st point,5.82,Petunidin-3-glucoside,Pet3G,2,0.008961861
+B2R3,3,1st point,5.94,Petunidin-3-glucoside,Pet3G,2,0.008244505
+B2R3,1,Harvest,4.86,Peonidin-3-glucoside,Peo3G,2,0.024086522
+B2R3,2,Harvest,5.28,Peonidin-3-glucoside,Peo3G,2,0.025064992
+B2R3,3,Harvest,5.17,Peonidin-3-glucoside,Peo3G,2,0.023026788
+B2R3,1,1st point,6.92,Peonidin-3-glucoside,Peo3G,2,0.013007832
+B2R3,2,1st point,6.92,Peonidin-3-glucoside,Peo3G,2,0.010658088
+B2R3,3,1st point,7.13,Peonidin-3-glucoside,Peo3G,2,0.009907675
+B2R3,1,Harvest,42.06,Malvidin-3-glucoside,M3G,2,0.208647626
+B2R3,2,Harvest,41.4,Malvidin-3-glucoside,M3G,2,0.19655182
+B2R3,3,Harvest,41.78,Malvidin-3-glucoside,M3G,2,0.185981428
+B2R3,1,1st point,32.28,Malvidin-3-glucoside,M3G,2,0.060702846
+B2R3,2,1st point,32.57,Malvidin-3-glucoside,M3G,2,0.050133019
+B2R3,3,1st point,32.84,Malvidin-3-glucoside,M3G,2,0.045609146
+B2R3,1,Harvest,1.62,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.008031133
+B2R3,2,Harvest,1.79,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.008479502
+B2R3,3,Harvest,1.66,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.007377821
+B2R3,1,1st point,3,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.005637526
+B2R3,2,1st point,2.83,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.004351795
+B2R3,3,1st point,2.75,Delphinidin-3-(6-acetyl) glucoside,D3Gac,2,0.00381762
+B2R3,1,Harvest,0.57,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002838402
+B2R3,2,Harvest,0.6,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002867379
+B2R3,3,Harvest,0.58,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002592529
+B2R3,1,1st point,1.37,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.00258421
+B2R3,2,1st point,1.53,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002359999
+B2R3,3,1st point,1.6,Cyanindin-3-(6-acetyl) glucoside,C3Gac,2,0.002220421
+B2R3,1,Harvest,2.13,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.010573745
+B2R3,2,Harvest,2.25,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.010704045
+B2R3,3,Harvest,2.23,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.009938056
+B2R3,1,1st point,3.7,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.006965685
+B2R3,2,1st point,3.66,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.00562567
+B2R3,3,1st point,3.6,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,2,0.004995236
+B2R3,1,Harvest,2.62,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.013002831
+B2R3,2,Harvest,2.77,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.013170903
+B2R3,3,Harvest,2.7,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.012012028
+B2R3,1,1st point,4.39,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.008265149
+B2R3,2,1st point,4.74,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.007297563
+B2R3,3,1st point,4.66,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,2,0.00647816
+B2R3,1,Harvest,25.49,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.126434892
+B2R3,2,Harvest,24.82,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.117809017
+B2R3,3,Harvest,25.18,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.112060416
+B2R3,1,1st point,24.01,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.045153575
+B2R3,2,1st point,24.89,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.0383143
+B2R3,3,1st point,24.21,Malvidin-3-(6-acetyl) glucoside,M3Gac,2,0.033623978
+B2R3,1,Harvest,1.47,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.007301513
+B2R3,2,Harvest,1.45,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.006880372
+B2R3,3,Harvest,1.44,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.006405621
+B2R3,1,1st point,2.66,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.00499473
+B2R3,2,1st point,2.7,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.004157435
+B2R3,3,1st point,2.91,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,2,0.004039762
+B2R3,1,Harvest,6.42,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.031847562
+B2R3,2,Harvest,5.8,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.027556652
+B2R3,3,Harvest,6.15,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.027388385
+B2R3,1,1st point,4.83,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.009083266
+B2R3,2,1st point,4.79,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.007375523
+B2R3,3,1st point,4.96,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,2,0.006887269
+B3R1,1,Harvest,6.81,Delphinidin-3-glucoside,D3G,3,0.034302454
+B3R1,2,Harvest,6.79,Delphinidin-3-glucoside,D3G,3,0.027719902
+B3R1,3,Harvest,6.65,Delphinidin-3-glucoside,D3G,3,0.027561782
+B3R1,1,1st point,9.33,Delphinidin-3-glucoside,D3G,3,0.022598618
+B3R1,2,1st point,8.21,Delphinidin-3-glucoside,D3G,3,0.017165733
+B3R1,3,1st point,9.95,Delphinidin-3-glucoside,D3G,3,0.028304747
+B3R1,1,Harvest,1.31,Cyanindin-3-glucoside,C3G,3,0.006579807
+B3R1,2,Harvest,1.35,Cyanindin-3-glucoside,C3G,3,0.005507096
+B3R1,3,Harvest,1.38,Cyanindin-3-glucoside,C3G,3,0.005705793
+B3R1,1,1st point,3.41,Cyanindin-3-glucoside,C3G,3,0.008254112
+B3R1,2,1st point,3.56,Cyanindin-3-glucoside,C3G,3,0.007444828
+B3R1,3,1st point,3.61,Cyanindin-3-glucoside,C3G,3,0.010277284
+B3R1,1,Harvest,5.59,Petunidin-3-glucoside,Pet3G,3,0.028151714
+B3R1,2,Harvest,5.73,Petunidin-3-glucoside,Pet3G,3,0.023391046
+B3R1,3,Harvest,5.59,Petunidin-3-glucoside,Pet3G,3,0.023162067
+B3R1,1,1st point,6.94,Petunidin-3-glucoside,Pet3G,3,0.016800557
+B3R1,2,1st point,6.34,Petunidin-3-glucoside,Pet3G,3,0.013263284
+B3R1,3,1st point,6.95,Petunidin-3-glucoside,Pet3G,3,0.019765067
+B3R1,1,Harvest,5.56,Peonidin-3-glucoside,Peo3G,3,0.027993023
+B3R1,2,Harvest,5.76,Peonidin-3-glucoside,Peo3G,3,0.023503337
+B3R1,3,Harvest,5.81,Peonidin-3-glucoside,Peo3G,3,0.024067458
+B3R1,1,1st point,8.08,Peonidin-3-glucoside,Peo3G,3,0.0195734
+B3R1,2,1st point,8.5,Peonidin-3-glucoside,Peo3G,3,0.01778496
+B3R1,3,1st point,8.32,Peonidin-3-glucoside,Peo3G,3,0.023665015
+B3R1,1,Harvest,41.53,Malvidin-3-glucoside,M3G,3,0.209112683
+B3R1,2,Harvest,41.56,Malvidin-3-glucoside,M3G,3,0.169552927
+B3R1,3,Harvest,41.4,Malvidin-3-glucoside,M3G,3,0.17158947
+B3R1,1,1st point,31.99,Malvidin-3-glucoside,M3G,3,0.077447848
+B3R1,2,1st point,32.14,Malvidin-3-glucoside,M3G,3,0.067202786
+B3R1,3,1st point,30.67,Malvidin-3-glucoside,M3G,3,0.087199801
+B3R1,1,Harvest,1.71,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.008586557
+B3R1,2,Harvest,1.74,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.007105269
+B3R1,3,Harvest,1.74,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.007193998
+B3R1,1,1st point,3.18,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.007698711
+B3R1,2,1st point,2.96,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.006189147
+B3R1,3,1st point,3.51,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009982585
+B3R1,1,Harvest,0.6,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003040452
+B3R1,2,Harvest,0.69,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.002817155
+B3R1,3,Harvest,0.69,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.002843836
+B3R1,1,1st point,1.43,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003461567
+B3R1,2,1st point,1.6,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003338414
+B3R1,3,1st point,1.47,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.004185566
+B3R1,1,Harvest,2.21,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.011133836
+B3R1,2,Harvest,2.3,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.009369278
+B3R1,3,Harvest,2.22,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.009212266
+B3R1,1,1st point,3.7,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.008961459
+B3R1,2,1st point,3.59,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.00750247
+B3R1,3,1st point,3.88,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.01102071
+B3R1,1,Harvest,2.84,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.014276115
+B3R1,2,Harvest,2.87,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.011727059
+B3R1,3,Harvest,2.91,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.012052962
+B3R1,1,1st point,4.4,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.010663394
+B3R1,2,1st point,4.57,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.009557979
+B3R1,3,1st point,4.6,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.013085338
+B3R1,1,Harvest,24.67,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.124202476
+B3R1,2,Harvest,24.33,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.099263107
+B3R1,3,Harvest,24.91,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.103211657
+B3R1,1,1st point,21.2,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.051342267
+B3R1,2,1st point,22.02,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.046053879
+B3R1,3,1st point,21.05,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.059849511
+B3R1,1,Harvest,1.41,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.007090909
+B3R1,2,Harvest,1.42,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005788582
+B3R1,3,Harvest,1.36,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005637377
+B3R1,1,1st point,2.35,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005679182
+B3R1,2,1st point,2.41,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005039372
+B3R1,3,1st point,2.27,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.006449666
+B3R1,1,Harvest,5.77,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.029054637
+B3R1,2,Harvest,5.45,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.022241028
+B3R1,3,Harvest,5.35,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.022180268
+B3R1,1,1st point,3.99,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.009650594
+B3R1,2,1st point,4.1,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.008569875
+B3R1,3,1st point,3.72,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.010565566
+B3R2,1,Harvest,7.45,Delphinidin-3-glucoside,D3G,3,0.035721551
+B3R2,2,Harvest,7.73,Delphinidin-3-glucoside,D3G,3,0.038068478
+B3R2,3,Harvest,7.43,Delphinidin-3-glucoside,D3G,3,0.037426717
+B3R2,1,1st point,8.72,Delphinidin-3-glucoside,D3G,3,0.021259247
+B3R2,2,1st point,8.66,Delphinidin-3-glucoside,D3G,3,0.018566198
+B3R2,3,1st point,8.69,Delphinidin-3-glucoside,D3G,3,0.019923839
+B3R2,1,Harvest,1.5,Cyanindin-3-glucoside,C3G,3,0.007203576
+B3R2,2,Harvest,1.59,Cyanindin-3-glucoside,C3G,3,0.007830737
+B3R2,3,Harvest,1.41,Cyanindin-3-glucoside,C3G,3,0.007110006
+B3R2,1,1st point,3.21,Cyanindin-3-glucoside,C3G,3,0.007835665
+B3R2,2,1st point,3.32,Cyanindin-3-glucoside,C3G,3,0.007114074
+B3R2,3,1st point,3.14,Cyanindin-3-glucoside,C3G,3,0.007189972
+B3R2,1,Harvest,5.88,Petunidin-3-glucoside,Pet3G,3,0.028205685
+B3R2,2,Harvest,6.08,Petunidin-3-glucoside,Pet3G,3,0.029942883
+B3R2,3,Harvest,5.88,Petunidin-3-glucoside,Pet3G,3,0.029593774
+B3R2,1,1st point,6.53,Petunidin-3-glucoside,Pet3G,3,0.015919306
+B3R2,2,1st point,6.69,Petunidin-3-glucoside,Pet3G,3,0.0143403
+B3R2,3,1st point,6.64,Petunidin-3-glucoside,Pet3G,3,0.015236471
+B3R2,1,Harvest,6.19,Peonidin-3-glucoside,Peo3G,3,0.029657766
+B3R2,2,Harvest,6.21,Peonidin-3-glucoside,Peo3G,3,0.030564536
+B3R2,3,Harvest,5.99,Peonidin-3-glucoside,Peo3G,3,0.030140263
+B3R2,1,1st point,7.95,Peonidin-3-glucoside,Peo3G,3,0.019376718
+B3R2,2,1st point,8.15,Peonidin-3-glucoside,Peo3G,3,0.017476731
+B3R2,3,1st point,7.76,Peonidin-3-glucoside,Peo3G,3,0.017791279
+B3R2,1,Harvest,40.7,Malvidin-3-glucoside,M3G,3,0.19514446
+B3R2,2,Harvest,40.11,Malvidin-3-glucoside,M3G,3,0.19751225
+B3R2,3,Harvest,40.46,Malvidin-3-glucoside,M3G,3,0.203709531
+B3R2,1,1st point,31.86,Malvidin-3-glucoside,M3G,3,0.077666394
+B3R2,2,1st point,31.88,Malvidin-3-glucoside,M3G,3,0.068355894
+B3R2,3,1st point,31.99,Malvidin-3-glucoside,M3G,3,0.073360494
+B3R2,1,Harvest,1.85,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.00886381
+B3R2,2,Harvest,1.93,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009500694
+B3R2,3,Harvest,1.86,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009344211
+B3R2,1,1st point,3.1,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.007546854
+B3R2,2,1st point,3.04,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.006514803
+B3R2,3,1st point,2.98,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.006834136
+B3R2,1,Harvest,0.67,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.00321633
+B3R2,2,Harvest,0.65,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003176274
+B3R2,3,Harvest,0.64,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003236692
+B3R2,1,1st point,1.47,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003595817
+B3R2,2,1st point,1.51,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003230343
+B3R2,3,1st point,1.46,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003342673
+B3R2,1,Harvest,2.23,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.010712242
+B3R2,2,Harvest,2.3,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.011340107
+B3R2,3,Harvest,2.25,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.011321613
+B3R2,1,1st point,3.85,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.009384246
+B3R2,2,1st point,3.76,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.008067755
+B3R2,3,1st point,3.74,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.008573799
+B3R2,1,Harvest,2.92,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.013984543
+B3R2,2,Harvest,2.95,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.014528497
+B3R2,3,Harvest,2.92,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.01471188
+B3R2,1,1st point,4.43,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.010804033
+B3R2,2,1st point,4.48,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.009608464
+B3R2,3,1st point,4.43,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.010153091
+B3R2,1,Harvest,22.84,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.109524646
+B3R2,2,Harvest,22.84,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.112436741
+B3R2,3,Harvest,23.16,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.116614124
+B3R2,1,1st point,22.07,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.053815427
+B3R2,2,1st point,21.91,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.046968663
+B3R2,3,1st point,22.37,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.051282882
+B3R2,1,Harvest,1.68,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.008042036
+B3R2,2,Harvest,1.64,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.008063658
+B3R2,3,Harvest,1.66,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.008334154
+B3R2,1,1st point,2.54,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.006203597
+B3R2,2,1st point,2.5,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005353468
+B3R2,3,1st point,2.49,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.005703002
+B3R2,1,Harvest,6.08,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.029166628
+B3R2,2,Harvest,5.97,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.029402309
+B3R2,3,Harvest,6.34,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.03192341
+B3R2,1,1st point,4.27,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.010402549
+B3R2,2,1st point,4.11,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.008820779
+B3R2,3,1st point,4.32,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.009900726
+B3R3,1,Harvest,8.39,Delphinidin-3-glucoside,D3G,3,0.046258207
+B3R3,2,Harvest,7.95,Delphinidin-3-glucoside,D3G,3,0.038498867
+B3R3,3,Harvest,7.58,Delphinidin-3-glucoside,D3G,3,0.036823454
+B3R3,1,1st point,10.45,Delphinidin-3-glucoside,D3G,3,0.025903491
+B3R3,2,1st point,10.33,Delphinidin-3-glucoside,D3G,3,0.02485505
+B3R3,3,1st point,10.53,Delphinidin-3-glucoside,D3G,3,0.028861463
+B3R3,1,Harvest,1.65,Cyanindin-3-glucoside,C3G,3,0.009119361
+B3R3,2,Harvest,1.61,Cyanindin-3-glucoside,C3G,3,0.007814904
+B3R3,3,Harvest,1.67,Cyanindin-3-glucoside,C3G,3,0.008100061
+B3R3,1,1st point,4.7,Cyanindin-3-glucoside,C3G,3,0.011652535
+B3R3,2,1st point,4.52,Cyanindin-3-glucoside,C3G,3,0.010887014
+B3R3,3,1st point,4.55,Cyanindin-3-glucoside,C3G,3,0.012479552
+B3R3,1,Harvest,6.23,Petunidin-3-glucoside,Pet3G,3,0.034310788
+B3R3,2,Harvest,6.12,Petunidin-3-glucoside,Pet3G,3,0.029626654
+B3R3,3,Harvest,5.9,Petunidin-3-glucoside,Pet3G,3,0.028652167
+B3R3,1,1st point,7.23,Petunidin-3-glucoside,Pet3G,3,0.017910618
+B3R3,2,1st point,7.25,Petunidin-3-glucoside,Pet3G,3,0.017450466
+B3R3,3,1st point,7.28,Petunidin-3-glucoside,Pet3G,3,0.019957284
+B3R3,1,Harvest,6.15,Peonidin-3-glucoside,Peo3G,3,0.033908709
+B3R3,2,Harvest,6.3,Peonidin-3-glucoside,Peo3G,3,0.030497706
+B3R3,3,Harvest,6.38,Peonidin-3-glucoside,Peo3G,3,0.030963301
+B3R3,1,1st point,9.75,Peonidin-3-glucoside,Peo3G,3,0.024161534
+B3R3,2,1st point,9.57,Peonidin-3-glucoside,Peo3G,3,0.023040565
+B3R3,3,1st point,9.57,Peonidin-3-glucoside,Peo3G,3,0.0262328
+B3R3,1,Harvest,40.07,Malvidin-3-glucoside,M3G,3,0.220783761
+B3R3,2,Harvest,40.37,Malvidin-3-glucoside,M3G,3,0.195415534
+B3R3,3,Harvest,39.97,Malvidin-3-glucoside,M3G,3,0.194111758
+B3R3,1,1st point,28.51,Malvidin-3-glucoside,M3G,3,0.070671579
+B3R3,2,1st point,29.19,Malvidin-3-glucoside,M3G,3,0.070242455
+B3R3,3,1st point,29.19,Malvidin-3-glucoside,M3G,3,0.080048803
+B3R3,1,Harvest,2.06,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.011367527
+B3R3,2,Harvest,1.91,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009235161
+B3R3,3,Harvest,1.86,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009019661
+B3R3,1,1st point,3.45,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.008542841
+B3R3,2,1st point,3.52,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.008467161
+B3R3,3,1st point,3.41,Delphinidin-3-(6-acetyl) glucoside,D3Gac,3,0.009363041
+B3R3,1,Harvest,0.63,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003470906
+B3R3,2,Harvest,0.65,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003123462
+B3R3,3,Harvest,0.68,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.003315289
+B3R3,1,1st point,1.75,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.004331347
+B3R3,2,1st point,1.72,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.004132035
+B3R3,3,1st point,1.69,Cyanindin-3-(6-acetyl) glucoside,C3Gac,3,0.004634259
+B3R3,1,Harvest,2.35,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.012940259
+B3R3,2,Harvest,2.26,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.010932101
+B3R3,3,Harvest,2.28,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.011082038
+B3R3,1,1st point,3.93,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.009743214
+B3R3,2,1st point,3.88,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.009346371
+B3R3,3,1st point,3.91,Petunidin-3-(6-acetyl) glucoside,Pet3Gac,3,0.010708425
+B3R3,1,Harvest,2.94,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.016204937
+B3R3,2,Harvest,2.9,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.014031572
+B3R3,3,Harvest,3.02,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.014689925
+B3R3,1,1st point,5.05,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.012529166
+B3R3,2,1st point,4.8,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.01155979
+B3R3,3,1st point,4.71,Peonidin-3-(6-acetyl) glucoside,Peo3Gac,3,0.012919678
+B3R3,1,Harvest,22.49,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.123953571
+B3R3,2,Harvest,22.32,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.108025489
+B3R3,3,Harvest,23.05,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.111932525
+B3R3,1,1st point,19.18,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.047554302
+B3R3,2,1st point,19.1,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.045954313
+B3R3,3,1st point,18.95,Malvidin-3-(6-acetyl) glucoside,M3Gac,3,0.051971272
+B3R3,1,Harvest,1.46,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.008071365
+B3R3,2,Harvest,1.62,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.007835713
+B3R3,3,Harvest,1.64,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.007963302
+B3R3,1,1st point,2.49,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.006162002
+B3R3,2,1st point,2.47,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.00593534
+B3R3,3,1st point,2.5,Peonidin-3-(6-p-coumaroy) glucoside,Peo3Gpc,3,0.006864308
+B3R3,1,Harvest,5.57,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.0306724
+B3R3,2,Harvest,5.99,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.02899822
+B3R3,3,Harvest,5.98,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.029041783
+B3R3,1,1st point,3.52,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.00872183
+B3R3,2,1st point,3.64,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.008765794
+B3R3,3,1st point,3.71,Malvidin-3-(6-p-coumaroy) glucoside,M3Gpc,3,0.0101722
