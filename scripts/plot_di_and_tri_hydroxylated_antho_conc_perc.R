@@ -10,7 +10,6 @@ library(ggplot2)
 
 monomeric_antho_concentration_perc_tri_di_hydroxylated_harvest<- read.csv("data/di_tri_hydroxylated_antho_conc_and_perc_harvest.csv", header = TRUE)
 
-
 ##### Concentration at Harvest####
 
 monomeric_antho_concentration_tri_di_hydroxylated_harvest<- monomeric_antho_concentration_perc_tri_di_hydroxylated_harvest %>%

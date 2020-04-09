@@ -55,14 +55,14 @@ lodi_weather_records_1985_2015_tmax_JJAS_avg <- ggplot(lodi_weather_records_1985
   scale_y_continuous(breaks = seq (30,33,0.5), limit = c(30,33)) +
   ylab("Average Tmax JJAS (ºC)") +
   xlab("Year") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) 
+  theme(axis.title.y = element_text(size=14, family = "serif")) +
+  theme(axis.title.x = element_text(size=14, family = "serif")) 
 
 
 write.csv(lodi_weather_records_1985_2015_tmax_JJAS_avg_count_n,"data_output/lodi_weather_records_1985_2014_tmax_JJAS_avg_count_n.csv")
 
 ggsave(lodi_weather_records_1985_2015_tmax_JJAS_avg, filename = "figures/lodi_weather_records_1985_2015_tmax_JJAS_avg.pdf", device = cairo_pdf, 
-       width = 7, height = 6)
+       width = 7, height = 5)
 
 
 #### JJAS Average T min  #####
@@ -98,13 +98,13 @@ lodi_weather_records_1985_2015_tmin_JJAS_avg <- ggplot(lodi_weather_records_1985
   scale_y_continuous(breaks = seq (10,15,1), limit = c(10,15)) +
   ylab("Average Tmin JJAS (ºC)") +
   xlab("Year") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) 
+  theme(axis.title.y = element_text(size=14, family = "serif")) +
+  theme(axis.title.x = element_text(size=14, family = "serif")) 
 
 write.csv(lodi_weather_records_1985_2015_tmin_JJAS_avg_count_n,"data_output/lodi_weather_records_1985_2014_tmin_JJAS_avg_count_n.csv")
 
 ggsave(lodi_weather_records_1985_2015_tmin_JJAS_avg, filename = "figures/lodi_weather_records_1985_2015_tmin_JJAS_avg.pdf", device = cairo_pdf, 
-       width = 7, height = 6)
+       width = 7, height = 5)
 
 
 #### Weather data from Stockton airport station ####
