@@ -3,12 +3,36 @@ library(grDevices)
 library(lubridate)
 library(ggplot2)
 
+somers_data_2019<- read.csv("data/raw_data_somers_2019.csv", header = TRUE)
+
+somers_data_2019<- somers_data_2019%>%
+  mutate(dilution_factor = (Extract_final_vol/Extract_ini_vol))%>%
+  mutate(total_antho_mg_l = (((20*((50*Treatment_D_corrected_abs_520)-1.6667*(10*Treatment_B_corrected_abs_520))))*dilution_factor))%>%
+  mutate(total_Antho_mg_berry = ((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_numb)))%>%
+  mutate(total_antho_mg_g_berry_weight =((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_weight)))%>%
+  mutate(total_Antho_mg_g_Skin = ((total_antho_mg_l*Extract_ini_vol)/(1000*Skin_weight_aft))) %>%
+  mutate(total_phenolic_w_DF = (((Treatment_D_corrected_abs_280*50)-4)*dilution_factor))%>%
+  mutate( treatment = case_when(
+    Block_id == "B1R2" ~ 1,
+    Block_id == "B1R3" ~ 1,
+    Block_id == "B1R4" ~ 1, 
+    Block_id == "B2R1" ~ 2,
+    Block_id == "B2R2" ~ 2,
+    Block_id == "B2R3" ~ 2,
+    Block_id == "B3R1" ~ 3,
+    Block_id == "B3R2" ~ 3,
+    Block_id == "B3R3" ~ 3,
+  )) %>%
+  filter(!ï..Date_analysis == "1/14/2020")%>%
+  filter(!ï..Date_analysis == "1/15/2020")
 
 
-no_leak_somers_first_results<- read.csv ("data/somers_berry_phenolics.csv", header = TRUE)
 
-no_leak_somers_first_results<- no_leak_somers_first_results%>%
+no_leak_somers_first_results<- somers_data_2019 %>%
   filter(!Block_id == "B1R2")
+
+str(somers_data_2019$ï..Date_analysis)
+
 
 se <- function(x) sqrt(var(x)/length(x))
 
@@ -16,15 +40,19 @@ str(no_leak_somers_first_results$Date_sampled)
 
 ####mg/berry####
 
+no_leak_somers_first_results%>%
+  group_by(Date_sampled, treatment)%>%
+  tally()
+
 no_leak_somers_first_results_ave_stdv_mg_berry<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin) %>%
   group_by(Date_sampled, treatment)%>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   summarise (avg = mean(total_Antho_mg_berry), sev = se(total_Antho_mg_berry), stdv = sd(total_Antho_mg_berry))
 
 
 no_leak_somers_first_results_ave_stdv_mg_berry_blocks<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin)  %>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, Block_id)%>%
   summarise (avg = mean(total_Antho_mg_berry), sev = se(total_Antho_mg_berry), stdv = sd(total_Antho_mg_berry))
@@ -85,7 +113,7 @@ ggsave(no_leak_somers_mg_berry_treatment_date_ok, filename = "figures/no_leak_so
 library(RColorBrewer)
 display.brewer.all(colorblindFriendly = TRUE)
 
-pd<- position_dodge(8)
+pd<- position_dodge(4)
 
 no_leak_somers_mg_berry_block<-ggplot(no_leak_somers_first_results_ave_stdv_mg_berry_blocks, aes(Date_sampled, avg, group = Block_id, color = Block_id)) + 
   geom_errorbar(aes(ymin=avg-sev, ymax=avg+sev), width= 1, position=pd, stat = "identity") +
@@ -112,13 +140,13 @@ ggsave(no_leak_somers_mg_berry_block, filename = "figures/no_leak_somers_mg_berr
 #####mg/g berry ####
 
 no_leak_somers_first_results_ave_stdv_mg_g_berry_weight<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin) %>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg= mean(total_antho_mg_g_berry_weight), sev = se(total_antho_mg_g_berry_weight), stdv = sd(total_antho_mg_g_berry_weight))
 
 no_leak_somers_first_results_ave_stdv_mg_g_berry_weight_blocks<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.)%>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin)%>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, Block_id) %>%
   summarise (avg= mean(total_antho_mg_g_berry_weight), sev = se(total_antho_mg_g_berry_weight), stdv = sd(total_antho_mg_g_berry_weight))
@@ -176,14 +204,14 @@ ggsave(no_leak_somers_mg_g_berry_weight_treatment_date_ok, filename = "figures/n
 
 
 no_leak_somers_first_results_ave_stdv_mg_g_skin<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin) %>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg_antho_mg_g_skin = mean(total_Antho_mg_g_Skin), sev = se(total_Antho_mg_g_Skin), stdv = sd(total_Antho_mg_g_Skin))
 
 
 no_leak_somers_first_results_ave_stdv_mg_g_skin_blocks<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep,  Total_antho_mg_L_w_dil_factor, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin) %>%
   group_by(Date_sampled, Block_id)%>%
   summarise (avg_antho_mg_g_skin = mean(total_Antho_mg_g_Skin), sev = se(total_Antho_mg_g_Skin), stdv = sd(total_Antho_mg_g_Skin))
 
@@ -230,17 +258,17 @@ ggsave(no_leak_somers_mg_g_skin_weight_treatment, filename = "figures/no_leak_so
 
 
 no_leak_somers_first_results_ave_stdv_total_phenolic<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep,Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics_w_DF, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, total_phenolic_w_DF) %>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, treatment)%>%
-  summarise (avg = mean(Total_phenolics_w_DF), sev = se(Total_phenolics_w_DF), stdv = sd(Total_phenolics_w_DF))
+  summarise (avg = mean(total_phenolic_w_DF), sev = se(total_phenolic_w_DF), stdv = sd(total_phenolic_w_DF))
 
 
 no_leak_somers_first_results_ave_stdv_total_phenolic_blocks<- no_leak_somers_first_results %>%
-  select(Date_sampled, Block_id, Rep, Total_antho_mg_L_w_dil_factor, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, Total_phenolics_w_DF, Hue, degree_ionization_.) %>%
+  select(Date_sampled, Block_id, Rep, treatment, total_Antho_mg_berry, total_antho_mg_l, total_antho_mg_g_berry_weight, total_Antho_mg_g_Skin, total_phenolic_w_DF) %>%
   filter(!is.na(total_Antho_mg_berry)) %>%
   group_by(Date_sampled, treatment)%>%
-  summarise (avg = mean(Total_phenolics_w_DF), sev = se(Total_phenolics_w_DF), stdv = sd(Total_phenolics_w_DF))
+  summarise (avg = mean(total_phenolic_w_DF), sev = se(total_phenolic_w_DF), stdv = sd(total_phenolic_w_DF))
 
 write.csv(no_leak_somers_first_results_ave_stdv_total_phenolic_blocks,"data_output/no_leak_somers_first_results_ave_stdv_total_phenolic_blocks.csv")
 

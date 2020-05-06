@@ -28,8 +28,9 @@ tz(diurnals_2019_leaf_temp_irt_vs_licor$datetime)
 
 tz(diurnals_2019_leaf_temp_irt_vs_licor$time)
 
-diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C <- format(diurnals_2019_leaf_temp_C_vs_round $leaf_temp_C)
-diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C<-as.numeric(diurnals_2019_leaf_temp_C_vs_round$leaf_temp_C)
+diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C<- format(diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C)
+
+diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C<-as.numeric(diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C)
 
 str(diurnals_2019_leaf_temp_irt_vs_licor$datetime)
 

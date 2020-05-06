@@ -1,26 +1,84 @@
 library(tidyverse)
 library(grDevices)
-no_leak_mcp_first_results<- read.csv ("data/mcp_berry_phenolics.csv", header = TRUE)
+library(ggpubr)
+
+std_curve_epicatechin<-read.csv("data/standard_curve_epicatechin_mcp.csv", header = TRUE) 
+
+std_curve_epicatechin<- std_curve_epicatechin%>%
+  mutate(concentration = ï..concentration)%>%
+select(concentration, Abs)
+
+std_curve_epicatechin%>%
+  group_by(concentration)%>%
+  tally()
+
+std_curve_epicatechin_plot <-std_curve_epicatechin%>%
+  ggplot(aes(concentration, Abs)) +
+  geom_point(alpha =1) +
+  geom_smooth(method = "lm", se =FALSE, formula = y ~ x,color="#A9A9A9") +
+  stat_regline_equation(aes(label =  paste(..eq.label..,..rr.label.., sep = "~~~~")),formula = y ~ x,size = 3.5, label.y.npc = 1) +
+  theme_classic()+
+  ylab ("Absorbance (AU)") +
+  xlab("-(-)epicatechin concentration (mg/L)") +
+  theme(axis.title.y = element_text(size=14, family = "serif")) +
+  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  scale_y_continuous(breaks=seq(0,1.4,0.2), limits = c (0,1.4)) +
+  scale_x_continuous (breaks=seq(0,4000,500), limits = c (0,4000))
+
+ggsave(std_curve_epicatechin_plot , filename = "figures/std_curve_epicatechin_plot.pdf", device = cairo_pdf, width = 10, height = 8)
+
+std_curve_epicatechin_avg_sd<- std_curve_epicatechin%>%
+  group_by(concentration)%>%
+  summarise(avg_epicatechin = mean(Abs), sev = se(Abs), stdv = sd(Abs))
+
+str(std_curve_epicatechin)
+
+##### MCP 2019#######
+
+mcp_data_2019<- read.csv("data/raw_data_mcp_2019.csv", header = TRUE)
+
+mcp_data_2019<- mcp_data_2019%>%
+  mutate(dilution_factor = (Extract_final_vol/Extract_ini_vol))%>%
+  mutate(total_tannin_mg_l = ((((Control-Treated)-0.029112)/0.00032)*dilution_factor))%>%
+  mutate(Total_tannin_mg_berry = ((total_tannin_mg_l*Extract_ini_vol)/(1000*Berry_numb)))%>%
+  mutate(Total_tannin_mg_g_berry_weight =((total_tannin_mg_l*Extract_ini_vol)/(1000*Berry_weight)))%>%
+  mutate(Total_tannin_mg_g_skin = ((total_tannin_mg_l*Extract_ini_vol)/(1000*Skin_weight_aft)))%>%
+  mutate( treatment = case_when(
+    Block_id == "B1R2" ~ 1,
+    Block_id == "B1R3" ~ 1,
+    Block_id == "B1R4" ~ 1, 
+    Block_id == "B2R1" ~ 2,
+    Block_id == "B2R2" ~ 2,
+    Block_id == "B2R3" ~ 2,
+    Block_id == "B3R1" ~ 3,
+    Block_id == "B3R2" ~ 3,
+    Block_id == "B3R3" ~ 3,
+  )) %>%
+  filter(!ï..Date_analysis == "1/14/2020")%>%
+  filter(!ï..Date_analysis == "1/15/2020")
 
 
-no_leak_mcp_first_results<- no_leak_mcp_first_results %>%
+no_leak_mcp_first_results<-mcp_data_2019%>%
   filter(!Block_id =="B1R2")
 
 se <- function(x) sqrt(var(x)/length(x))
 
-str(no_leak_mcp_first_results$Date_sampled)
+str(no_leak_mcp_first_results$Date_sample)
 
+no_leak_mcp_first_results%>%
+  group_by(Date_sampled, treatment)%>%
+  tally()
 
 ####mg/berry ####
 
 no_leak_mcp_first_results_ave_stdv_mg_berry<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg_tannin_mg_berry = mean(Total_tannin_mg_berry), sev = se(Total_tannin_mg_berry), stdv = sd(Total_tannin_mg_berry))
 
 
 no_leak_mcp_first_results_ave_stdv_mg_berry_blocks<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, Block_id)%>%
   summarise (avg_tannin_mg_berry = mean(Total_tannin_mg_berry), sev = se(Total_tannin_mg_berry), stdv = sd(Total_tannin_mg_berry))
 
@@ -102,12 +160,12 @@ ggsave(no_leak_mcp_mg_berry_block, filename = "figures/no_leak_mcp_mg_berry_bloc
 ####mg/g berry ####
 
 no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg_tannin_mg_g_berry_weight = mean(Total_tannin_mg_g_berry_weight), sev = se(Total_tannin_mg_g_berry_weight), stdv = sd(Total_tannin_mg_g_berry_weight))
 
 no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight_blocks<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, Block_id)%>%
   summarise (avg_tannin_mg_g_berry_weight = mean(Total_tannin_mg_g_berry_weight), sev = se(Total_tannin_mg_g_berry_weight), stdv = sd(Total_tannin_mg_g_berry_weight))
 
@@ -132,7 +190,7 @@ tz(no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight_blocks$Date_sampled)
 no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight$treatment <-format(no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight$treatment)
 as.character(no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight$treatment)
 
-
+pd<- position_dodge(0.5)
 
 no_leak_mcp_mg_g_berry_weight_ok_date<-ggplot(no_leak_mcp_first_results_ave_stdv_mg_g_berry_weight, aes(Date_sampled, avg_tannin_mg_g_berry_weight, group = treatment, color = treatment)) + 
   geom_errorbar(alpha=1,aes(ymin=avg_tannin_mg_g_berry_weight-sev, ymax=avg_tannin_mg_g_berry_weight+sev), width= 3, size=1, position=pd, stat = "identity") +
@@ -163,13 +221,13 @@ ggsave(no_leak_mcp_mg_g_berry_weight_ok_date, filename = "figures/no_leak_mcp_mg
 
 ####mg/g skin #####
 no_leak_mcp_first_results_ave_stdv_mg_g_skin<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_berry, Total_tannin_mg_g_berry_weight, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg_tannin_mg_g_skin = mean(Total_tannin_mg_g_skin), sev = se(Total_tannin_mg_g_skin), stdv = sd(Total_tannin_mg_g_skin))
 
 
 no_leak_mcp_first_results_ave_stdv_mg_g_skin_blocks<- no_leak_mcp_first_results %>%
-  select(Date_sampled, Block_id, Rep, Conc_w_dil_factor, Total_tannin_mg_g_skin, treatment) %>%
+  select(Date_sampled, Block_id, Rep, total_tannin_mg_l, Total_tannin_mg_g_skin, treatment) %>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg_tannin_mg_g_skin = mean(Total_tannin_mg_g_skin), sev = se(Total_tannin_mg_g_skin), stdv = sd(Total_tannin_mg_g_skin))
 

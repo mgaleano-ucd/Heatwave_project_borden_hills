@@ -1,0 +1,49 @@
+"","hydroxylation","Block_id","Rep","Set","treatment","percentage_hydro"
+"1","dihydroxylated ","B1R3",1,"1st point","1",17.8678176035963
+"2","dihydroxylated ","B1R3",2,"1st point","1",18.0332277736883
+"3","dihydroxylated ","B1R3",3,"1st point","1",17.4950297058781
+"4","dihydroxylated ","B1R4",1,"1st point","1",18.5917471360318
+"5","dihydroxylated ","B1R4",2,"1st point","1",18.2974873388832
+"6","dihydroxylated ","B1R4",3,"1st point","1",18.8867287715809
+"7","dihydroxylated ","B2R1",1,"1st point","2",16.3619213731069
+"8","dihydroxylated ","B2R1",2,"1st point","2",16.2801425465543
+"9","dihydroxylated ","B2R1",3,"1st point","2",16.4453808783836
+"10","dihydroxylated ","B2R2",1,"1st point","2",19.5364042807183
+"11","dihydroxylated ","B2R2",2,"1st point","2",18.1203531756318
+"12","dihydroxylated ","B2R2",3,"1st point","2",17.8197171514999
+"13","dihydroxylated ","B2R3",1,"1st point","2",17.4099817873841
+"14","dihydroxylated ","B2R3",2,"1st point","2",17.8300868986484
+"15","dihydroxylated ","B2R3",3,"1st point","2",18.2615421699134
+"16","dihydroxylated ","B3R1",1,"1st point","3",19.2743090263612
+"17","dihydroxylated ","B3R1",2,"1st point","3",20.2086071790528
+"18","dihydroxylated ","B3R1",3,"1st point","3",19.95052650212
+"19","dihydroxylated ","B3R2",1,"1st point","3",19.2249020449632
+"20","dihydroxylated ","B3R2",2,"1st point","3",19.5467167220871
+"21","dihydroxylated ","B3R2",3,"1st point","3",18.8638947914235
+"22","dihydroxylated ","B3R3",1,"1st point","3",23.4454345662484
+"23","dihydroxylated ","B3R3",2,"1st point","3",22.771317364966
+"24","dihydroxylated ","B3R3",3,"1st point","3",22.7429819961714
+"25","trihydroxylated","B1R3",1,"1st point","1",82.1321823964037
+"26","trihydroxylated","B1R3",2,"1st point","1",81.9667722263117
+"27","trihydroxylated","B1R3",3,"1st point","1",82.5049702941219
+"28","trihydroxylated","B1R4",1,"1st point","1",81.4082528639682
+"29","trihydroxylated","B1R4",2,"1st point","1",81.7025126611168
+"30","trihydroxylated","B1R4",3,"1st point","1",81.1132712284191
+"31","trihydroxylated","B2R1",1,"1st point","2",83.6380786268931
+"32","trihydroxylated","B2R1",2,"1st point","2",83.7198574534457
+"33","trihydroxylated","B2R1",3,"1st point","2",83.5546191216164
+"34","trihydroxylated","B2R2",1,"1st point","2",80.4635957192817
+"35","trihydroxylated","B2R2",2,"1st point","2",81.8796468243682
+"36","trihydroxylated","B2R2",3,"1st point","2",82.1802828485001
+"37","trihydroxylated","B2R3",1,"1st point","2",82.5900182126159
+"38","trihydroxylated","B2R3",2,"1st point","2",82.1699131013516
+"39","trihydroxylated","B2R3",3,"1st point","2",81.7384578300866
+"40","trihydroxylated","B3R1",1,"1st point","3",80.7256909736388
+"41","trihydroxylated","B3R1",2,"1st point","3",79.7913928209472
+"42","trihydroxylated","B3R1",3,"1st point","3",80.04947349788
+"43","trihydroxylated","B3R2",1,"1st point","3",80.7750979550368
+"44","trihydroxylated","B3R2",2,"1st point","3",80.4532832779129
+"45","trihydroxylated","B3R2",3,"1st point","3",81.1361052085765
+"46","trihydroxylated","B3R3",1,"1st point","3",76.5545654337515
+"47","trihydroxylated","B3R3",2,"1st point","3",77.228682635034
+"48","trihydroxylated","B3R3",3,"1st point","3",77.2570180038286

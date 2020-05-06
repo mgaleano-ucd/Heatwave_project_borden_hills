@@ -1,0 +1,49 @@
+"","hydroxylation","Block_id","Rep","Set","treatment","percentage_hydro"
+"1","dihydroxylated ","B1R3",1,"Harvest","1",10.8767150880837
+"2","dihydroxylated ","B1R3",2,"Harvest","1",11.0355716364995
+"3","dihydroxylated ","B1R3",3,"Harvest","1",11.120857119879
+"4","dihydroxylated ","B1R4",1,"Harvest","1",11.2058163137912
+"5","dihydroxylated ","B1R4",2,"Harvest","1",11.814983936311
+"6","dihydroxylated ","B1R4",3,"Harvest","1",11.8514764374223
+"7","dihydroxylated ","B2R1",1,"Harvest","2",10.4788333912349
+"8","dihydroxylated ","B2R1",2,"Harvest","2",10.4689511527774
+"9","dihydroxylated ","B2R1",3,"Harvest","2",10.4225469877934
+"10","dihydroxylated ","B2R2",1,"Harvest","2",12.6847940592823
+"11","dihydroxylated ","B2R2",2,"Harvest","2",12.0498681038646
+"12","dihydroxylated ","B2R2",3,"Harvest","2",13.017685967686
+"13","dihydroxylated ","B2R3",1,"Harvest","2",10.3032275769713
+"14","dihydroxylated ","B2R3",2,"Harvest","2",11.0671728764091
+"15","dihydroxylated ","B2R3",3,"Harvest","2",10.755041095619
+"16","dihydroxylated ","B3R1",1,"Harvest","3",11.4530578926844
+"17","dihydroxylated ","B3R1",2,"Harvest","3",11.7888489473774
+"18","dihydroxylated ","B3R1",3,"Harvest","3",11.8543252788395
+"19","dihydroxylated ","B3R2",1,"Harvest","3",12.6958310015917
+"20","dihydroxylated ","B3R2",2,"Harvest","3",12.8011824617234
+"21","dihydroxylated ","B3R2",3,"Harvest","3",12.3613580242139
+"22","dihydroxylated ","B3R3",1,"Harvest","3",12.6293279673253
+"23","dihydroxylated ","B3R3",2,"Harvest","3",12.8508650688297
+"24","dihydroxylated ","B3R3",3,"Harvest","3",13.1508784196209
+"25","trihydroxylated","B1R3",1,"Harvest","1",89.1232849119163
+"26","trihydroxylated","B1R3",2,"Harvest","1",88.9644283635005
+"27","trihydroxylated","B1R3",3,"Harvest","1",88.879142880121
+"28","trihydroxylated","B1R4",1,"Harvest","1",88.7941836862088
+"29","trihydroxylated","B1R4",2,"Harvest","1",88.185016063689
+"30","trihydroxylated","B1R4",3,"Harvest","1",88.1485235625777
+"31","trihydroxylated","B2R1",1,"Harvest","2",89.5211666087651
+"32","trihydroxylated","B2R1",2,"Harvest","2",89.5310488472226
+"33","trihydroxylated","B2R1",3,"Harvest","2",89.5774530122066
+"34","trihydroxylated","B2R2",1,"Harvest","2",87.3152059407177
+"35","trihydroxylated","B2R2",2,"Harvest","2",87.9501318961354
+"36","trihydroxylated","B2R2",3,"Harvest","2",86.982314032314
+"37","trihydroxylated","B2R3",1,"Harvest","2",89.6967724230287
+"38","trihydroxylated","B2R3",2,"Harvest","2",88.9328271235909
+"39","trihydroxylated","B2R3",3,"Harvest","2",89.244958904381
+"40","trihydroxylated","B3R1",1,"Harvest","3",88.5469421073156
+"41","trihydroxylated","B3R1",2,"Harvest","3",88.2111510526226
+"42","trihydroxylated","B3R1",3,"Harvest","3",88.1456747211605
+"43","trihydroxylated","B3R2",1,"Harvest","3",87.3041689984083
+"44","trihydroxylated","B3R2",2,"Harvest","3",87.1988175382767
+"45","trihydroxylated","B3R2",3,"Harvest","3",87.6386419757861
+"46","trihydroxylated","B3R3",1,"Harvest","3",87.3706720326747
+"47","trihydroxylated","B3R3",2,"Harvest","3",87.1491349311703
+"48","trihydroxylated","B3R3",3,"Harvest","3",86.849121580379

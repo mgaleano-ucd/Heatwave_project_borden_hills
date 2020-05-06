@@ -19,7 +19,35 @@ berry_basic_chemistry_no_first_point <- berry_basic_chemistry%>%
   select(Block_id, date, treatment, TA, Brix, pH, Rep)
   
 
-somers_berry_data <- read.csv("data/somers_berry_phenolics.csv", header =TRUE)
+somers_data_2019<- read.csv("data/raw_data_somers_2019.csv", header = TRUE)
+
+somers_data_2019<- somers_data_2019%>%
+  mutate(dilution_factor = (Extract_final_vol/Extract_ini_vol))%>%
+  mutate(total_antho_mg_l = (((20*((50*Treatment_D_corrected_abs_520)-1.6667*(10*Treatment_B_corrected_abs_520))))*dilution_factor))%>%
+  mutate(total_Antho_mg_berry = ((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_numb)))%>%
+  mutate(total_antho_mg_g_berry_weight =((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_weight)))%>%
+  mutate(total_Antho_mg_g_Skin = ((total_antho_mg_l*Extract_ini_vol)/(1000*Skin_weight_aft))) %>%
+  mutate(total_phenolic_w_DF = (((Treatment_D_corrected_abs_280*50)-4)*dilution_factor))%>%
+  mutate( treatment = case_when(
+    Block_id == "B1R2" ~ 1,
+    Block_id == "B1R3" ~ 1,
+    Block_id == "B1R4" ~ 1, 
+    Block_id == "B2R1" ~ 2,
+    Block_id == "B2R2" ~ 2,
+    Block_id == "B2R3" ~ 2,
+    Block_id == "B3R1" ~ 3,
+    Block_id == "B3R2" ~ 3,
+    Block_id == "B3R3" ~ 3,
+  )) %>%
+  filter(!ï..Date_analysis == "1/14/2020")%>%
+  filter(!ï..Date_analysis == "1/15/2020")
+
+
+
+somers_berry_data<- somers_data_2019 %>%
+  filter(!Block_id == "B1R2")
+
+
 
 somers_berry_data<-somers_berry_data %>%
   filter(!is.na (Rep))%>%
