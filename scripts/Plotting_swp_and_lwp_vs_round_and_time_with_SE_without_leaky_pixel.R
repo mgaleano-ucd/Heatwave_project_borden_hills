@@ -6,6 +6,7 @@ library(ggplot2)
 library(xtable)
 library(agricolae)
 
+
 diurnals_borden_hills_2019 <-read.csv("data_output/diurnals_2019_old_and_new_blocks_cleaned_no_NAs.csv", header = TRUE)
 
 str(diurnals_borden_hills_2019)
