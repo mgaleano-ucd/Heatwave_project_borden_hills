@@ -179,7 +179,7 @@ monomeric_antho_percentage_tri_di_hydroxylated_avg_se <-monomeric_antho_percenta
   summarise(avg = mean(percentage_hydro), sev = se(percentage_hydro)) %>%
   filter(!hydroxylation == "trihydroxylated")
 
-write.csv(monomeric_antho_percentage_tri_di_hydroxylated,"data_output/monomeric_antho_percentage_tri_di_hydroxylated_harvest.csv")
+write.csv(monomeric_antho_percentage_tri_di_hydroxylated_avg_se,"data_output/monomeric_antho_percentage_tri_di_hydroxylated_avg_se.csv")
 
 
 pd <- position_dodge(0.95)
@@ -191,14 +191,16 @@ monomeric_antho_perc_di_hydroxylated_harvest<-ggplot(monomeric_antho_percentage_
   scale_color_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression("Anthocyanin percentage (%)")) +
-  xlab("Monomeric anthocyanins") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) +
+  xlab("Di-OH") +
+  theme(axis.title.y = element_text(size=18, family = "serif")) +
+  theme(axis.title.x = element_text(size=16, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right")+
-  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))
+  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))+
+  theme(axis.text.x = element_text(size =-1))+
+  theme(axis.text.y = element_text(size =14))
 
 ggsave(monomeric_antho_perc_di_hydroxylated_harvest, filename = "figures/monomeric_antho_perc_di_hydroxylated_harvest_redo.pdf", device = cairo_pdf, 
        width = 7, height = 6)
@@ -217,14 +219,16 @@ monomeric_antho_perc_tri_hydroxylated_harvest<-ggplot(monomeric_antho_percentage
   scale_color_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression("Anthocyanin percentage (%)")) +
-  xlab("Monomeric anthocyanins") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) +
+  xlab("Tri-OH") +
+  theme(axis.title.y = element_text(size=18, family = "serif")) +
+  theme(axis.title.x = element_text(size=16, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right") +
-  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))
+  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))  +
+  theme(axis.text.x = element_text(size =-1))+
+  theme(axis.text.y = element_text(size =14))
 
 ggsave(monomeric_antho_perc_tri_hydroxylated_harvest, filename = "figures/monomeric_antho_perc_tri_hydroxylated_harvest_redo.pdf", device = cairo_pdf, 
        width = 7, height = 6)
@@ -347,7 +351,7 @@ monomeric_antho_perc_tri_di_hydroxylated_first_point_avg_se <-monomeric_antho_pe
 
 pd <- position_dodge(0.95)
 
-write.csv(monomeric_antho_perc_tri_di_hydroxylated_first_point,"data_output/monomeric_antho_perc_tri_di_hydroxylated_first_point.csv")
+write.csv(monomeric_antho_perc_tri_di_hydroxylated_first_point_avg_se ,"data_output/monomeric_antho_perc_tri_di_hydroxylated_first_point_avg_se .csv")
 
 monomeric_antho_perc_di_hydroxylated_first_point<-ggplot(monomeric_antho_perc_tri_di_hydroxylated_first_point_avg_se, aes(hydroxylation,avg, fill =treatment)) + 
   geom_col( position = "dodge", color = "gray36", alpha =0.8) +
@@ -356,14 +360,16 @@ monomeric_antho_perc_di_hydroxylated_first_point<-ggplot(monomeric_antho_perc_tr
   scale_color_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression("Anthocyanin percentage (%)")) +
-  xlab("Monomeric anthocyanins") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) +
+  xlab("DI-OH") +
+  theme(axis.title.y = element_text(size=18, family = "serif")) +
+  theme(axis.title.x = element_text(size=16, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right")  +
-  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))
+  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90)) +
+  theme(axis.text.x = element_text(size =-1))+
+  theme(axis.text.y = element_text(size =14))
 
 ggsave(monomeric_antho_perc_di_hydroxylated_first_point, filename = "figures/monomeric_antho_perc_di_hydroxylated_first_point_redo.pdf", device = cairo_pdf, 
        width = 7, height = 6)
@@ -382,14 +388,16 @@ monomeric_antho_perc_tri_hydroxylated_first_point<-ggplot(monomeric_antho_perc_t
   scale_color_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression("Anthocyanin percentage (%)")) +
-  xlab("Monomeric anthocyanins") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) +
+  xlab("Tri-OH") +
+  theme(axis.title.y = element_text(size=18, family = "serif")) +
+  theme(axis.title.x = element_text(size=16, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right")  +
-  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90))
+  scale_y_continuous(breaks=seq(0,90,10), limits = c (0,90)) +
+  theme(axis.text.x = element_text(size =-1))+
+  theme(axis.text.y = element_text(size =14))
 
 ggsave(monomeric_antho_perc_tri_hydroxylated_first_point, filename = "figures/monomeric_antho_perc_tri_hydroxylated_first_point_redo.pdf", device = cairo_pdf, 
        width = 7, height = 6)
@@ -424,7 +432,22 @@ ggplot(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova, aes (treatmen
 anova_mono_antho <- aov (percentage_hydro~treatment, monomeric_antho_perc_tri_di_hydroxylated_first_point_anova )
 summary (anova_mono_antho)
 
+str(anova_mono_antho)
+summary(anova_mono_antho$call)
+
+library(xtable)
+trial<-xtable(anova_mono_antho)
+
+lapply(summary(anova_mono_antho), xtable)
+library(agricolae)
+
+tukey<-TukeyHSD(aov(percentage_hydro~treatment, monomeric_antho_perc_tri_di_hydroxylated_first_point_anova))
+
 (test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+
+str(test)
+as.data.frame(test$groups)
+
 
 monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist<-monomeric_antho_perc_tri_di_hydroxylated_first_point_anova %>%
   filter(treatment == 1)
@@ -478,4 +501,9 @@ monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist<-monomeric_antho
   filter(treatment == 3)
 hist(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist$percentage_hydro)
 
+####Plot all together#### 
 
+library(cowplot)
+di_tri_OH_antho_harvest_and_50_veraison_2019 <- plot_grid (monomeric_antho_perc_tri_hydroxylated_harvest,monomeric_antho_perc_di_hydroxylated_harvest, monomeric_antho_perc_tri_hydroxylated_first_point,monomeric_antho_perc_di_hydroxylated_first_point, ncol=2, nrow = 2, vjust = 1, hjust = -1.5, label_size = 15)
+
+ggsave(di_tri_OH_antho_harvest_and_50_veraison_2019, filename = "figures/di_tri_OH_antho_harvest_and_50_veraison_2019.pdf", device = cairo_pdf, width = 12, height = 8)
