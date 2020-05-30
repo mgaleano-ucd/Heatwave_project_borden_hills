@@ -3,6 +3,8 @@ library(grDevices)
 library(tidyverse)
 library(lubridate)
 library(ggplot2)
+library(xtable)
+library(agricolae)
 
 diurnals_borden_hills_2019 <-read.csv("data_output/diurnals_2019_old_and_new_blocks_cleaned_no_NAs.csv", header = TRUE)
 
@@ -412,7 +414,10 @@ diurnals_2019_swp_vs_time<- diurnals_2019_lwp_vs_time %>%
 
 diurnals_2019_swp_vs_time_grouped<- diurnals_2019_swp_vs_time %>%
   group_by(day, treatment) %>%
-  summarise(avg_swp = mean(Stem_wp_bar))
+  summarise(avg_swp = mean(Stem_wp_bar), SER = se(Stem_wp_bar))
+
+
+write.csv(diurnals_2019_swp_vs_time_grouped, "data_output/diurnals_2019_swp_vs_time_grouped_without_leaky_pixel.csv")
 
 diurnals_2019_swp_vs_time$treatment<- reorder(diurnals_2019_swp_vs_time$treatment, diurnals_2019_swp_vs_time$day)
 diurnals_2019_swp_vs_time$day<-factor(diurnals_2019_swp_vs_time$day, 
@@ -435,11 +440,10 @@ swp2019_v7<-diurnals_2019_swp_vs_time %>%
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression(paste(psi["stem"],  "  (bar)"))) +
-  ggtitle("Borden Hills diurnals 2019") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Day") +
-  theme(axis.title.y = element_text(size=16, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  xlab("Date") +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -452,7 +456,9 @@ swp2019_v7<-diurnals_2019_swp_vs_time %>%
   geom_vline(xintercept = 5.5, color = "darkgrey", size = 0.5, linetype ="dashed") +
   geom_vline(xintercept = 6.5, color = "darkgrey", size = 0.5, linetype ="dashed") +
   annotate("text", x = "Jul 28", y = 0, label = "Heatwave", size = 4.5) +
-  annotate("text", x = "Aug 15", y = 0, label ="Heatwave", size = 4.5)
+  annotate("text", x = "Aug 15", y = 0, label ="Heatwave", size = 4.5) + 
+  theme(axis.text.x = element_text(size =18))+
+  theme(axis.text.y = element_text(size =18))
 
 
 ggsave(swp2019_v7, filename = "figures/swp2019_v7_without_leaky_pixel.pdf", device = cairo_pdf, 
@@ -504,6 +510,8 @@ diurnals_2019_lwp_vs_time1_Jul25_avg_se <-diurnals_2019_lwp_vs_time1_Jul25 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+write.csv(diurnals_2019_lwp_vs_time1_Jul25_avg_se,"data_output/diurnals_2019_lwp_vs_time1_Jul25_avg_se.csv")
+
 diurnals_2019_lwp_vs_time1_Jul25$Rep<- format(diurnals_2019_lwp_vs_time1_Jul25$Rep)
 as.character(diurnals_2019_lwp_vs_time1_Jul25$Rep)
 str(diurnals_2019_lwp_vs_time1_Jul25$Rep)
@@ -524,17 +532,17 @@ pd<- position_dodge(1400)
 
 
 lwpjul25_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_Jul25_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle("July 25 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=16, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -542,7 +550,9 @@ lwpjul25_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_Jul25_avg_se, aes(interv
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(-18,0,3), limits = c (-18.5,0)) +
   scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M") +
-  annotate("text", x = as.POSIXct("07-25-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)
+  annotate("text", x = as.POSIXct("07-25-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)+ 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 
 
@@ -569,6 +579,8 @@ diurnals_2019_lwp_vs_time1_Jul28_avg_se <-diurnals_2019_lwp_vs_time1_Jul28 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+write.csv(diurnals_2019_lwp_vs_time1_Jul28_avg_se,"data_output/diurnals_2019_lwp_vs_time1_Jul28_avg_se.csv")
+
 diurnals_2019_lwp_vs_time1_Jul28$Rep<- format(diurnals_2019_lwp_vs_time1_Jul28$Rep)
 as.character(diurnals_2019_lwp_vs_time1_Jul28$Rep)
 str(diurnals_2019_lwp_vs_time1_Jul28$Rep)
@@ -589,17 +601,17 @@ pd<- position_dodge(1400)
 
 
 lwpjul28_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_Jul28_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle( "July 28 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -608,7 +620,9 @@ lwpjul28_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_Jul28_avg_se, aes(interv
   scale_y_continuous(breaks=seq(-18,0,3), limits = c (-18.5,0)) +
   scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M") +
   annotate("text", x = as.POSIXct("07-28-2019 11:35:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
-  annotate("text", x = as.POSIXct("07-28-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)
+  annotate("text", x = as.POSIXct("07-28-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)+ 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 ggsave(lwpjul28_time_avg_se, filename = "figures/lwpjul_28_time_avg_se_without_leaky_pixel.pdf", device = cairo_pdf, width = 8, height = 6)
 
@@ -633,6 +647,8 @@ diurnals_2019_lwp_vs_time1_aug1_avg_se <-diurnals_2019_lwp_vs_time1_aug1 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+write.csv(diurnals_2019_lwp_vs_time1_aug1_avg_se,"data_output/diurnals_2019_lwp_vs_time1_aug1_avg_se.csv")
+
 diurnals_2019_lwp_vs_time1_aug1$Rep<- format(diurnals_2019_lwp_vs_time1_aug1$Rep)
 as.character(diurnals_2019_lwp_vs_time1_aug1$Rep)
 str(diurnals_2019_lwp_vs_time1_aug1$Rep)
@@ -653,17 +669,17 @@ pd<- position_dodge(1400)
 
 
 lwpaug1_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug1_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle( "August 1 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -674,7 +690,9 @@ lwpaug1_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug1_avg_se, aes(interval
   annotate("text", x = as.POSIXct("08-01-2019 8:35:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
   annotate("text", x = as.POSIXct("08-01-2019 10:55:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
   annotate("text", x = as.POSIXct("08-01-2019 13:40:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y =-1, label = "*", size = 6) +
-  annotate("text", x = as.POSIXct("08-01-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) 
+  annotate("text", x = as.POSIXct("08-01-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) + 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
   
 ggsave(lwpaug1_time_avg_se, filename = "figures/lwpaug1_time_avg_se_without_leaky_pixel.pdf", device = cairo_pdf, width = 8, height = 6)
 
@@ -698,6 +716,9 @@ diurnals_2019_lwp_vs_time1_aug15_avg_se <-diurnals_2019_lwp_vs_time1_aug15 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+write.csv(diurnals_2019_lwp_vs_time1_aug15_avg_se,"data_output/diurnals_2019_lwp_vs_time1_aug15_avg_se.csv")
+
+
 diurnals_2019_lwp_vs_time1_aug15$Rep<- format(diurnals_2019_lwp_vs_time1_aug15$Rep)
 as.character(diurnals_2019_lwp_vs_time1_aug15$Rep)
 str(diurnals_2019_lwp_vs_time1_aug15$Rep)
@@ -718,17 +739,17 @@ pd<- position_dodge(1400)
 
 
 lwpaug15_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug15_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle( "August 15 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -738,7 +759,9 @@ lwpaug15_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug15_avg_se, aes(interv
   scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M") +
   annotate("text", x = as.POSIXct("08-15-2019 9:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
   annotate("text", x = as.POSIXct("08-15-2019 11:30:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
-  annotate("text", x = as.POSIXct("08-15-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)
+  annotate("text", x = as.POSIXct("08-15-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)+ 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 ggsave(lwpaug15_time_avg_se, filename = "figures/lwpaug15_time_avg_se_without_leaky_pixel.pdf", device = cairo_pdf, width = 8, height = 6)
 
@@ -762,6 +785,10 @@ diurnals_2019_lwp_vs_time1_aug20_avg_se <-diurnals_2019_lwp_vs_time1_aug20 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+
+write.csv(diurnals_2019_lwp_vs_time1_aug20_avg_se,"data_output/diurnals_2019_lwp_vs_time1_aug20_avg_se.csv")
+
+
 diurnals_2019_lwp_vs_time1_aug20$Rep<- format(diurnals_2019_lwp_vs_time1_aug20$Rep)
 as.character(diurnals_2019_lwp_vs_time1_aug20$Rep)
 str(diurnals_2019_lwp_vs_time1_aug20$Rep)
@@ -782,17 +809,17 @@ pd<- position_dodge(1400)
 
 
 lwpaug20_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug20_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle("August 20 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -802,7 +829,9 @@ lwpaug20_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_aug20_avg_se, aes(interv
   scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M") +
   annotate("text", x = as.POSIXct("08-20-2019 6:00:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -0.5, label = "*", size = 6) +
   annotate("text", x = as.POSIXct("08-20-2019 11:20:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6) +
-  annotate("text", x = as.POSIXct("08-20-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)
+  annotate("text", x = as.POSIXct("08-20-2019 17:10:00", format="%m-%d-%Y %H:%M:%S", tz ="UTC"), y = -1, label = "*", size = 6)+ 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 ggsave(lwpaug20_time_avg_se, filename = "figures/lwpaug20_time_avg_se_without_leaky_pixel.pdf", device = cairo_pdf, width = 8, height = 6)
 
@@ -829,6 +858,9 @@ diurnals_2019_lwp_vs_time1_sep5_avg_se <-diurnals_2019_lwp_vs_time1_sep5 %>%
   group_by(interval, treatment, round) %>%
   summarise(avg_leaf_wp = mean(Leaf_wp_bar), sev = se(Leaf_wp_bar))
 
+write.csv(diurnals_2019_lwp_vs_time1_sep5_avg_se,"data_output/diurnals_2019_lwp_vs_time1_sep5_avg_se.csv")
+
+
 diurnals_2019_lwp_vs_time1_sep5$Rep<- format(diurnals_2019_lwp_vs_time1_sep5$Rep)
 as.character(diurnals_2019_lwp_vs_time1_sep5$Rep)
 str(diurnals_2019_lwp_vs_time1_sep5$Rep)
@@ -849,24 +881,26 @@ pd<- position_dodge(1400)
 
 
 lwpsep5_time_avg_se<-ggplot(diurnals_2019_lwp_vs_time1_sep5_avg_se, aes(interval, avg_leaf_wp, group = treatment, color = treatment)) + 
-  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 1800, position=pd, stat = "identity") +
+  geom_errorbar(alpha = 0.9, aes(ymin=avg_leaf_wp-sev, ymax=avg_leaf_wp+sev), width = 3500, position=pd, stat = "identity") +
   geom_line(alpha =0.7, size =1, position=pd, linetype = "solid", stat = "identity") +
   geom_point(alpha =0.6, position=pd, size=2,stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET")) +
   ylab(expression(paste(psi["leaf"],  "  (bar)"))) +
   ggtitle( "September 5 2019") +
-  theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
+  theme(plot.title = element_text(hjust = 0.5, size = 21, face = "bold", family = "serif")) +
   xlab("Time") +
-  theme(axis.title.y = element_text(size=18, face = "bold", family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  theme(axis.title.y = element_text(size=20, face = "bold", family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right") +
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(-18,0,3), limits = c (-18.5,0)) +
-  scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M")
+  scale_x_datetime(date_breaks = "2 hours", date_labels = "%H:%M")+ 
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 ggsave(lwpsep5_time_avg_se, filename = "figures/lwpsep5_time_avg_se_without_leaky_pixel.pdf", device = cairo_pdf, width = 8, height = 6)
 
@@ -1031,9 +1065,9 @@ ggsave(lwpjul12_time_avg_se, filename = "figures/lwpjul12_time_avg_se_without_le
 
 library(cowplot)
 
-panel_plot_lwp_time_2019_avg_se_ok <- plot_grid (lwpjul25_time_avg_se, lwpjul28_time_avg_se, lwpaug1_time_avg_se, lwpaug15_time_avg_se, lwpaug20_time_avg_se, lwpsep5_time_avg_se, labels=c("Pre-heatwave", "Heatwave", "Post-heatwave","Heatwave", "Post-heatwave", "Recovery", ncol=3, nrow = 2), vjust = 4, hjust = -1.5, label_size = 12)
+panel_plot_lwp_time_2019_avg_se_ok <- plot_grid (lwpjul25_time_avg_se, lwpjul28_time_avg_se, lwpaug1_time_avg_se, lwpaug15_time_avg_se, lwpaug20_time_avg_se, lwpsep5_time_avg_se, labels=c("Pre-heatwave", "Heatwave", "Post-heatwave","Heatwave", "Post-heatwave", "Recovery", ncol=3, nrow = 2), vjust = 4, hjust = -1.5, label_size = 16)
 
-ggsave(panel_plot_lwp_time_2019_avg_se_ok , filename = "figures/panel_plot_lwp_time_2019_avg_se_ok_without_leaky_pixel.pdf", device = cairo_pdf, width = 15, height = 8)
+ggsave(panel_plot_lwp_time_2019_avg_se_ok , filename = "figures/panel_plot_lwp_time_2019_avg_se_ok_without_leaky_pixel.pdf", device = cairo_pdf, width = 19, height = 11)
 
 
 # Everyhting all diurnals and blocks
@@ -1076,7 +1110,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
+library(xtable)
+anova_lwp_bar_jul_25_round_1<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_25_round_1,"data_output/anova_lwp_bar_jul_25_round_1.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_25_round_1<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_25_round_1,"data_output/tukey_lwp_bar_jul_25_round_1.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1118,7 +1163,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
+anova_lwp_bar_jul_25_round_2<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_25_round_2,"data_output/anova_lwp_bar_jul_25_round_2.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_25_round_2<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_25_round_2,"data_output/tukey_lwp_bar_jul_25_round_2.csv")
+
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1161,7 +1218,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
+anova_lwp_bar_jul_25_round_3<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_25_round_3,"data_output/anova_lwp_bar_jul_25_round_3.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_25_round_3<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_25_round_3,"data_output/tukey_lwp_bar_jul_25_round_3.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1204,7 +1272,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
+anova_lwp_bar_jul_25_round_4<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_25_round_4,"data_output/anova_lwp_bar_jul_25_round_4.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_25_round_4<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_25_round_4,"data_output/tukey_lwp_bar_jul_25_round_4.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1247,7 +1326,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
+anova_lwp_bar_jul_25_round_5<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_25_round_5,"data_output/anova_lwp_bar_jul_25_round_5.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_25_round_5<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_25_round_5,"data_output/tukey_lwp_bar_jul_25_round_5.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1289,7 +1379,20 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+
+anova_lwp_bar_jul_28_round_1<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_28_round_1,"data_output/anova_lwp_bar_jul_28_round_1.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_28_round_1<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_28_round_1,"data_output/tukey_lwp_bar_jul_28_round_1.csv")
+
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1332,7 +1435,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_jul_28_round_2<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_28_round_2,"data_output/anova_lwp_bar_jul_28_round_2.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_28_round_2<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_28_round_2,"data_output/tukey_lwp_bar_jul_28_round_2.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1375,7 +1489,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_jul_28_round_3<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_28_round_3,"data_output/anova_lwp_bar_jul_28_round_3.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_28_round_3<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_28_round_3,"data_output/tukey_lwp_bar_jul_28_round_3.csv")
+
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1417,7 +1543,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_jul_28_round_4<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_28_round_4,"data_output/anova_lwp_bar_jul_28_round_4.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_28_round_4<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_28_round_4,"data_output/tukey_lwp_bar_jul_28_round_4.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1459,7 +1596,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_jul_28_round_5<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_jul_28_round_5,"data_output/anova_lwp_bar_jul_28_round_5.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_jul_28_round_5<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_jul_28_round_5,"data_output/tukey_lwp_bar_jul_28_round_5.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1501,9 +1649,22 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_1_round_1<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_1_round_1,"data_output/anova_lwp_bar_aug_1_round_1.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
 
 (test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.054, unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_1_round_1<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_1_round_1,"data_output/tukey_lwp_bar_aug_1_round_1.csv")
+
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1545,7 +1706,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_1_round_2<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_1_round_2,"data_output/anova_lwp_bar_aug_1_round_2.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_1_round_2<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_1_round_2,"data_output/tukey_lwp_bar_aug_1_round_2.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1587,7 +1760,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_1_round_3<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_1_round_3,"data_output/anova_lwp_bar_aug_1_round_3.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_1_round_3<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_1_round_3,"data_output/tukey_lwp_bar_aug_1_round_3.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1629,7 +1814,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_1_round_4<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_1_round_4,"data_output/anova_lwp_bar_aug_1_round_4.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_1_round_4<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_1_round_4,"data_output/tukey_lwp_bar_aug_1_round_4.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1671,7 +1868,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_1_round_5<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_1_round_5,"data_output/anova_lwp_bar_aug_1_round_5.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_1_round_5<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_1_round_5,"data_output/tukey_lwp_bar_aug_1_round_5.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1713,7 +1922,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_15_round_1<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_15_round_1,"data_output/anova_lwp_bar_aug_15_round_1.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_15_round_1<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_15_round_1,"data_output/tukey_lwp_bar_aug_15_round_1.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1755,7 +1976,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_15_round_2<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_15_round_2,"data_output/anova_lwp_bar_aug_15_round_2.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_15_round_2<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_15_round_2,"data_output/tukey_lwp_bar_aug_15_round_2.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1798,7 +2031,18 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_15_round_3<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_15_round_3,"data_output/anova_lwp_bar_aug_15_round_3.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_aug_15_round_3<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_15_round_3,"data_output/tukey_lwp_bar_aug_15_round_3.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1840,7 +2084,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_15_round_4<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_15_round_4,"data_output/anova_lwp_bar_aug_15_round_4.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_aug_15_round_4<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_15_round_4,"data_output/tukey_lwp_bar_aug_15_round_4.csv")
+
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1883,8 +2139,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
 
+anova_lwp_bar_aug_15_round_5<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_15_round_5,"data_output/anova_lwp_bar_aug_15_round_5.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+str(test)
+tukey_lwp_bar_aug_15_round_5<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_15_round_5,"data_output/tukey_lwp_bar_aug_15_round_5.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1926,7 +2193,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_20_round_1<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_20_round_1,"data_output/anova_lwp_bar_aug_20_round_1.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_20_round_1<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_20_round_1,"data_output/tukey_lwp_bar_aug_20_round_1.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -1968,7 +2247,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_20_round_2<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_20_round_2,"data_output/anova_lwp_bar_aug_20_round_2.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_20_round_2<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_20_round_2,"data_output/tukey_lwp_bar_aug_20_round_2.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -2010,7 +2301,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_20_round_3<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_20_round_3,"data_output/anova_lwp_bar_aug_20_round_3.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_20_round_3<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_20_round_3,"data_output/tukey_lwp_bar_aug_20_round_3.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -2051,7 +2354,20 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+
+anova_lwp_bar_aug_20_round_4<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_20_round_4,"data_output/anova_lwp_bar_aug_20_round_4.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_20_round_4<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_20_round_4,"data_output/tukey_lwp_bar_aug_20_round_4.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
@@ -2136,7 +2452,19 @@ ggplot(diurnals_2019_lwp_vs_time, aes (treatment,Leaf_wp_bar, group =treatment))
 anova_lwp_bar<- aov (Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time)
 summary (anova_lwp_bar)
 
-(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+anova_lwp_bar_aug_20_round_5<-xtable(anova_lwp_bar)
+
+write.csv(anova_lwp_bar_aug_20_round_5,"data_output/anova_lwp_bar_aug_20_round_5.csv")
+
+TukeyHSD(aov(Leaf_wp_bar~treatment, diurnals_2019_lwp_vs_time))
+
+
+(test<- HSD.test(anova_lwp_bar , trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
+
+
+str(test)
+tukey_lwp_bar_aug_20_round_5<-as.data.frame(test$groups)
+write.csv(tukey_lwp_bar_aug_20_round_5,"data_output/tukey_lwp_bar_aug_20_round_5.csv")
 
 diurnals_2019_lwp_vs_time_hist<-diurnals_2019_lwp_vs_time %>%
   filter(treatment == 1)
