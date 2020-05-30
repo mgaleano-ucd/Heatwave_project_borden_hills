@@ -52,7 +52,6 @@ leafT_irt_vs_licor2019<- ggscatter(diurnals_2019_leaf_temp_irt_vs_licor, x = "Tl
 cor(diurnals_2019_leaf_temp_irt_vs_licor$Tleaf, diurnals_2019_leaf_temp_irt_vs_licor$leaf_temp_C, method = "pearson")
 
 
-
 ggsave(leafT_irt_vs_licor2019 , filename = "figures/leafT_irt_vs_licor2019.pdf", device = cairo_pdf, width = 10, height = 8)
 
 
