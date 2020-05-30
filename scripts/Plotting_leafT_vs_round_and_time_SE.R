@@ -13,7 +13,8 @@ diurnals_2019_leaf_temp_C_vs_round <- diurnals_borden_hills_2019 %>%
   select(-hhmmss) %>%
   filter(!is.na(time)) %>%
   filter(!is.na(leaf_temp_C)) %>%
-  filter(!leaf_temp_C == "-")
+  filter(!leaf_temp_C == "-")%>%
+  filter(!pixel_number == 34)
 
 
 diurnals_2019_leaf_temp_C_vs_round$time<- format(strptime(diurnals_2019_leaf_temp_C_vs_round$time,"%H:%M:%S"), format = "%H:%M", tz = "America_Los_Angeles")
