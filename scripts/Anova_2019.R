@@ -7,6 +7,9 @@ library(agricolae)
 
 diurnals_borden_hills_2019 <-read.csv("data_output/diurnals_2019_old_and_new_blocks_cleaned_no_NAs.csv", header = TRUE)
 
+diurnals_borden_hills_2019<- diurnals_borden_hills_2019 %>%
+  filter(!pixel_number == 34 )
+
 str(diurnals_borden_hills_2019)
 
 diurnals_2019_lwp_vs_time <- diurnals_borden_hills_2019 %>%
@@ -184,7 +187,7 @@ ggplot(diurnals_2019_swp_vs_time, aes (treatment,Stem_wp_bar, group =treatment))
 Anova_stem<- aov (Stem_wp_bar~treatment, diurnals_2019_swp_vs_time)
 summary (Anova_stem)
 
-(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05))
+(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
 summary(test)
 
 diurnals_2019_swp_vs_time_hist<-diurnals_2019_swp_vs_time %>%
@@ -226,7 +229,7 @@ ggplot(diurnals_2019_swp_vs_time, aes (treatment,Stem_wp_bar, group =treatment))
 Anova_stem<- aov (Stem_wp_bar~treatment, diurnals_2019_swp_vs_time)
 summary (Anova_stem)
 
-(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05))
+(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
 summary(test)
 
 diurnals_2019_swp_vs_time_hist<-diurnals_2019_swp_vs_time %>%
@@ -267,7 +270,7 @@ ggplot(diurnals_2019_swp_vs_time, aes (treatment,Stem_wp_bar, group =treatment))
 Anova_stem<- aov (Stem_wp_bar~treatment, diurnals_2019_swp_vs_time)
 summary (Anova_stem)
 
-(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05))
+(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
 summary(test)
 
 diurnals_2019_swp_vs_time_hist<-diurnals_2019_swp_vs_time %>%
@@ -309,7 +312,7 @@ ggplot(diurnals_2019_swp_vs_time, aes (treatment,Stem_wp_bar, group =treatment))
 Anova_stem<- aov (Stem_wp_bar~treatment, diurnals_2019_swp_vs_time)
 summary (Anova_stem)
 
-(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05))
+(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05,unbalanced = "TRUE"))
 summary(test)
 
 diurnals_2019_swp_vs_time_hist<-diurnals_2019_swp_vs_time %>%
@@ -350,7 +353,7 @@ ggplot(diurnals_2019_swp_vs_time, aes (treatment,Stem_wp_bar, group =treatment))
 Anova_stem<- aov (Stem_wp_bar~treatment, diurnals_2019_swp_vs_time)
 summary (Anova_stem)
 
-(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05))
+(test<- HSD.test(Anova_stem, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
 summary(test)
 
 diurnals_2019_swp_vs_time_hist<-diurnals_2019_swp_vs_time %>%
@@ -6969,7 +6972,7 @@ ggplot(berry_chemistry_borden_hills_2019_pH, aes (treatment,pH, group =treatment
 
 anova_pH <- aov (pH~treatment, berry_chemistry_borden_hills_2019_pH )
 summary (anova_pH)
-
+str(anova_pH)
 (Tukey_pH<- HSD.test(anova_pH , trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
 
 berry_chemistry_borden_hills_2019_pH_hist<-berry_chemistry_borden_hills_2019_pH %>%
@@ -7291,6 +7294,7 @@ yield_bh_2019_grouped$Rep<-format(yield_bh_2019_grouped$Rep)
 as.character(yield_bh_2019_grouped$Rep)
 
 str(yield_bh_2019_grouped$Rep)
+####Yield####
 
 ####grs cluster ANOVA####
 yield_bh_2019_grouped_grs_cluster <- yield_bh_2019_grouped%>%
@@ -7394,12 +7398,94 @@ yield_bh_2019_grouped_kg_vine_hist<-yield_bh_2019_grouped_kg_vine %>%
 hist(yield_bh_2019_grouped_kg_vine_hist$Weight_kg)
 
 
+##### number of clusters per vine ######
+
+yield_bh_2019_grouped_num_cluster <- yield_bh_2019_grouped%>%
+  filter(!pixel_number == "34") %>%
+  select(Clusters, Treatment) 
+
+yield_bh_2019_grouped_num_cluster%>%
+  group_by(Treatment) %>%
+  tally()
+
+
+is.factor(yield_bh_2019_grouped_num_cluster$Treatment)
+
+yield_bh_2019_grouped_num_cluster$Treatment<- format(yield_bh_2019_grouped_num_cluster$Treatment)
+yield_bh_2019_grouped_num_cluster$Treatment<- as.factor(yield_bh_2019_grouped_num_cluster$Treatment)
+
+is.factor(yield_bh_2019_grouped_num_cluster$Treatment)
+
+ggplot(yield_bh_2019_grouped_num_cluster, aes (Treatment,Clusters, group =Treatment)) +
+  geom_boxplot(aes(fill = Treatment, color =Treatment)) +
+  geom_point()
+
+anova_yield_Clusters <- aov (Clusters~Treatment, yield_bh_2019_grouped_num_cluster)
+summary  (anova_yield_Clusters)
+
+str(anova_yield_Clusters)
+
+
+anova_yield_Clusters_print<-xtable(anova_yield_Clusters)
+
+lapply(summary(anova_yield_Clusters), xtable)
+
+
+tukey<-TukeyHSD(aov(Clusters~Treatment, yield_bh_2019_grouped_num_cluster))
+
+(test<- HSD.test(anova_yield_Clusters, trt = "Treatment", alpha =0.05, unbalanced = "TRUE"))
+
+str(test)
+as.data.frame(test$groups)
+
+yield_bh_2019_grouped_num_cluster_hist<-yield_bh_2019_grouped_num_cluster %>%
+  filter(Treatment == 1)
+hist(yield_bh_2019_grouped_num_cluster_hist$Clusters)
+
+yield_bh_2019_grouped_num_cluster_hist<-yield_bh_2019_grouped_num_cluster %>%
+  filter(Treatment == 2)
+hist(yield_bh_2019_grouped_num_cluster_hist$Clusters)
+
+yield_bh_2019_grouped_num_cluster_hist<-yield_bh_2019_grouped_num_cluster %>%
+  filter(Treatment == 3)
+hist(yield_bh_2019_grouped_num_cluster_hist$Clusters)
+
+
 ##### Phenolics anova MCP Tannins ####
 
-mcp_2019<- read.csv("data/mcp_berry_phenolics.csv", header =TRUE)
+mcp_2019<- read.csv("data/raw_data_mcp_2019.csv", header = TRUE)
 
+mcp_2019<- mcp_2019%>%
+  mutate(dilution_factor = (Extract_final_vol/Extract_ini_vol))%>%
+  mutate(total_tannin_mg_l = ((((Control-Treated)-0.029112)/0.00032)*dilution_factor))%>%
+  mutate(Total_tannin_mg_berry = ((total_tannin_mg_l*Extract_ini_vol)/(1000*Berry_numb)))%>%
+  mutate(Total_tannin_mg_g_berry_weight =((total_tannin_mg_l*Extract_ini_vol)/(1000*Berry_weight)))%>%
+  mutate(Total_tannin_mg_g_skin = ((total_tannin_mg_l*Extract_ini_vol)/(1000*Skin_weight_aft)))%>%
+  mutate( treatment = case_when(
+    Block_id == "B1R2" ~ 1,
+    Block_id == "B1R3" ~ 1,
+    Block_id == "B1R4" ~ 1, 
+    Block_id == "B2R1" ~ 2,
+    Block_id == "B2R2" ~ 2,
+    Block_id == "B2R3" ~ 2,
+    Block_id == "B3R1" ~ 3,
+    Block_id == "B3R2" ~ 3,
+    Block_id == "B3R3" ~ 3,
+  )) %>%
+  filter(!ï..Date_analysis == "1/14/2020")%>%
+  filter(!ï..Date_analysis == "1/15/2020")
+
+
+mcp_2019<-mcp_2019%>%
+  filter(!Block_id =="B1R2")
 
 se <- function(x) sqrt(var(x)/length(x))
+
+str(mcp_2019$Date_sample)
+
+mcp_2019%>%
+  group_by(Date_sampled, treatment)%>%
+  tally()
 
 
 #### Total tannins  ANOVA MG/BERRY####
@@ -7870,6 +7956,34 @@ hist(mcp_2019_tannins_mg_per_g_berry_wt_hist$Total_tannin_mg_g_berry_weight)
 
 somers_2019<- read.csv("data/somers_berry_phenolics.csv", header =TRUE)
 
+somers_2019<- read.csv("data/raw_data_somers_2019.csv", header = TRUE)
+
+somers_2019<- somers_2019%>%
+  mutate(dilution_factor = (Extract_final_vol/Extract_ini_vol))%>%
+  mutate(total_antho_mg_l = (((20*((50*Treatment_D_corrected_abs_520)-1.6667*(10*Treatment_B_corrected_abs_520))))*dilution_factor))%>%
+  mutate(total_Antho_mg_berry = ((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_numb)))%>%
+  mutate(total_antho_mg_g_berry_weight =((total_antho_mg_l*Extract_ini_vol)/(1000*Berry_weight)))%>%
+  mutate(total_Antho_mg_g_Skin = ((total_antho_mg_l*Extract_ini_vol)/(1000*Skin_weight_aft))) %>%
+  mutate(total_phenolic_w_DF = (((Treatment_D_corrected_abs_280*50)-4)*dilution_factor))%>%
+  mutate( treatment = case_when(
+    Block_id == "B1R2" ~ 1,
+    Block_id == "B1R3" ~ 1,
+    Block_id == "B1R4" ~ 1, 
+    Block_id == "B2R1" ~ 2,
+    Block_id == "B2R2" ~ 2,
+    Block_id == "B2R3" ~ 2,
+    Block_id == "B3R1" ~ 3,
+    Block_id == "B3R2" ~ 3,
+    Block_id == "B3R3" ~ 3,
+  )) %>%
+  filter(!ï..Date_analysis == "1/14/2020")%>%
+  filter(!ï..Date_analysis == "1/15/2020")
+
+
+somers_2019<- somers_2019 %>%
+  filter(!Block_id == "B1R2")
+
+
 #### Aug 8 ####
 
 somers_2019_antho_mg_berry <- somers_2019%>%
@@ -8078,7 +8192,7 @@ summary (anova_antho_mg_berry)
 
 (tukey_antho_mg_berry<- HSD.test(anova_antho_mg_berry, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
 
-#### Differences with tuey alpha 0.05 no wiwhen running anova with 0.05###
+#### Differences with tukey alpha 0.05 no when running anova with 0.05###
 
 somers_2019_antho_mg_berry_hist<-somers_2019_antho_mg_berry %>%
   filter(treatment == 1)
@@ -8316,9 +8430,9 @@ hist(somers_2019_antho_mg_g_berry_wt_hist$total_antho_mg_g_berry_weight)
 
 
 ##### berry weight ANOVA #####
-berry_weight_2019<- read.csv("data/mcp_berry_phenolics.csv", header =TRUE)
 
-berry_weight_2019 <- berry_weight_2019%>%
+
+berry_weight_2019 <- somers_2019%>%
   mutate(berry_weight_g_berry  = (Berry_weight/60))
 
 #### Aug 8 ####
@@ -8549,1097 +8663,3 @@ berry_weight_2019_grouped_hist<-berry_weight_2019_grouped %>%
 hist(berry_weight_2019_grouped_hist$berry_weight_g_berry)
 
 
-####monomeric phenolics anova ####
-
-
-monomeric_antho_no_leak<- read.csv("data/monomeric_antho_hplc_harvest_and_first_point.csv", header =TRUE)
-
-#### Harvest ####
-
-###### D3G mb/berry ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(dephiglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,dephiglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (dephiglu_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$dephiglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$dephiglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$dephiglu_mg_berry)
-
-#### C3G mb/berry Harvest ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(cyaniglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,cyaniglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (cyaniglu_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyaniglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyaniglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyaniglu_mg_berry)
-
-#### Pet3G Harvest mg/berry #####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(petuglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,petuglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (petuglu_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petuglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petuglu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petuglu_mg_berry)
-
-#### Peo3G Harvest ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_glu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,peoni_glu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (peoni_glu_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_glu_mg_berry)
-
-#### M3G mb/berry Harvest #####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_glu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,malvi_glu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_glu_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_glu_mg_berry)
-
-#### D3Gac Harvest ####
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(delphi_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,delphi_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (delphi_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$delphi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$delphi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$delphi_ac_mg_berry)
-
-
-#### C3Gac Harvest ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(cyani_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,cyani_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (cyani_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05))
-
-#### Differences whether if it is unbalanced or not 
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyani_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyani_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$cyani_ac_mg_berry)
-
-#### Pet3Gac Harvest mg/berry ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(petu_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,petu_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (petu_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petu_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petu_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$petu_ac_mg_berry)
-
-#### Peo3Gac mg/berry Harvest ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,peoni_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (peoni_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_ac_mg_berry)
-
-#### M3Gac Harvest mb/berry ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,malvi_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_ac_mg_berry)
-
-#### Peo3Gcoum Harvest mb/berry ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_coum_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,peoni_coum_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (peoni_coum_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$peoni_coum_mg_berry)
-
-####M3Gcoum Harvest mb/berry ####
-
-monomeric_antho_no_leak_2019_harvest <- monomeric_antho_no_leak%>%
-  filter(Set == "Harvest") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_coum_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-monomeric_antho_no_leak_2019_harvest %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-monomeric_antho_no_leak_2019_harvest$treatment<- format(monomeric_antho_no_leak_2019_harvest$treatment)
-monomeric_antho_no_leak_2019_harvest$treatment<- as.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_harvest$treatment)
-
-
-str(monomeric_antho_no_leak_2019_harvest)
-
-ggplot(monomeric_antho_no_leak_2019_harvest, aes (treatment,malvi_coum_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_coum_mg_berry~treatment, monomeric_antho_no_leak_2019_harvest )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_harvest_hist<-monomeric_antho_no_leak_2019_harvest %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_harvest_hist$malvi_coum_mg_berry)
-
-#### ~50% VERAISON ####
-monomeric_antho_no_leak<- read.csv("data/monomeric_antho_hplc_harvest_and_first_point.csv", header =TRUE)
-
-###### D3G mb/berry ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak %>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(dephiglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment) 
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,dephiglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (dephiglu_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$dephiglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$dephiglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$dephiglu_mg_berry)
-
-#### C3G mb/berry 1stpoint ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(cyaniglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,cyaniglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (cyaniglu_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyaniglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyaniglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyaniglu_mg_berry)
-
-#### Pet3G 1st point mg/berry #####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(petuglu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,petuglu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (petuglu_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petuglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petuglu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petuglu_mg_berry)
-
-#### Peo3G 1st point ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_glu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,peoni_glu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-
-anova_mono_antho <- aov (peoni_glu_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_glu_mg_berry)
-
-#### M3G mb/berry 1st point #####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_glu_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,malvi_glu_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_glu_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_glu_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_glu_mg_berry)
-
-#### D3Gac 1st point ####
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(delphi_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,delphi_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (delphi_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$delphi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$delphi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$delphi_ac_mg_berry)
-
-
-#### C3Gac 1st point ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(cyani_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,cyani_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (cyani_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyani_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyani_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$cyani_ac_mg_berry)
-
-#### Pet3Gac 1st point mg/berry ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(petu_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,petu_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (petu_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petu_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petu_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$petu_ac_mg_berry)
-
-#### Peo3Gac mg/berry 1st point ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,peoni_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (peoni_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_ac_mg_berry)
-
-#### M3Gac 1stpoint mb/berry ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_ac_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,malvi_ac_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_ac_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_ac_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_ac_mg_berry)
-
-#### Peo3Gcoum 1st point mb/berry ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(peoni_coum_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,peoni_coum_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (peoni_coum_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$peoni_coum_mg_berry)
-
-####M3Gcoum 1st point mb/berry ####
-
-monomeric_antho_no_leak_2019_1stpoint <- monomeric_antho_no_leak%>%
-  filter(Set == "1st point") %>%
-  filter(!ï..Sample == "B1R2") %>%
-  select(malvi_coum_mg_berry, treatment) 
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-monomeric_antho_no_leak_2019_1stpoint %>%
-  group_by(treatment)%>%
-  tally()
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-monomeric_antho_no_leak_2019_1stpoint$treatment<- format(monomeric_antho_no_leak_2019_1stpoint$treatment)
-monomeric_antho_no_leak_2019_1stpoint$treatment<- as.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-is.factor(monomeric_antho_no_leak_2019_1stpoint$treatment)
-
-
-str(monomeric_antho_no_leak_2019_1stpoint)
-
-ggplot(monomeric_antho_no_leak_2019_1stpoint, aes (treatment,malvi_coum_mg_berry, group =treatment)) +
-  geom_boxplot(aes(fill = treatment, color =treatment)) +
-  geom_point()
-
-anova_mono_antho <- aov (malvi_coum_mg_berry~treatment, monomeric_antho_no_leak_2019_1stpoint )
-summary (anova_mono_antho)
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
-
-####ANOVA significant not tukey with alpha 0.05 yes with alpha 0.057 
-
-(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.057, unbalanced = "TRUE"))
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 1)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 2)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_coum_mg_berry)
-
-monomeric_antho_no_leak_2019_1stpoint_hist<-monomeric_antho_no_leak_2019_1stpoint %>%
-  filter(treatment == 3)
-hist(monomeric_antho_no_leak_2019_1stpoint_hist$malvi_coum_mg_berry)
