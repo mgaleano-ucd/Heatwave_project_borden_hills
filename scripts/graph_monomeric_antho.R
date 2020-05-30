@@ -239,6 +239,7 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se <-monomeric_an
   group_by(main_antho, treatment) %>%
   summarise(avg = mean(percent_main_antho), sev = se(percent_main_antho))
 
+write.csv(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se,"data_output/monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se.csv")
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se$main_antho<-factor(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se$main_antho, levels = c("Cyanidins","Peonidins","Malvidins", "Petunidins", "Delphinidins"))
 
@@ -252,22 +253,24 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se<-ggplot(monome
   scale_fill_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+ 
   ylab(expression(" Anthocyanin percentage (%)")) +
   xlab("Primary anthocyanins") +
-  theme(axis.title.y = element_text(size=13, family = "serif")) +
-  theme(axis.title.x = element_text(size=13, family = "serif")) +
+  theme(axis.title.y = element_text(size=16, family = "serif")) +
+  theme(axis.title.x = element_text(size=16, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right") +
   scale_y_continuous(breaks=seq(0,75,10), limits = c (0,75))+
-  geom_vline(xintercept = 2.5, color = "darkgrey", size = 0.5, linetype ="dashed")
+  geom_vline(xintercept = 2.5, color = "darkgrey", size = 0.5, linetype ="dashed")+
+  theme(axis.text.x = element_text(size =14))+
+  theme(axis.text.y = element_text(size =14))
 
 
 ggsave(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se, filename = "figures/monomeric_antho_no_leak_2019_percentage_harvest_main_antho_avg_se_redo.pdf", device = cairo_pdf, 
        width = 9, height = 6)
 
-### ANOVA harvest point 
+#### ANOVA harvest point#### 
 
-###Delphinidins
+####Delphinidins####
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_harvest_main_antho %>%
  select(main_antho, treatment, percent_main_antho) %>%
@@ -306,7 +309,7 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist<-monomeric
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist$percent_main_antho)
 
-####Cyanidins 
+####Cyanidins ####
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_harvest_main_antho %>%
   select(main_antho, treatment, percent_main_antho) %>%
@@ -348,7 +351,7 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist<-monomeric
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist$percent_main_antho)
 
-####Malvidins
+####Malvidins####
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_harvest_main_antho %>%
   filter(main_antho == "Malvidins") 
@@ -390,7 +393,7 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist<-monomeric
 hist(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist$percent_main_antho)
 
 
-##### Petunidins 
+##### Petunidins ####
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_harvest_main_antho %>%
   filter(main_antho == "Petunidins") 
@@ -431,7 +434,7 @@ monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist<-monomeric
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova_hist$percent_main_antho)
 
-#### Peonidins 
+#### Peonidins #####
 
 monomeric_antho_no_leak_2019_percentage_harvest_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_harvest_main_antho %>%
   filter(main_antho == "Peonidins") 
@@ -495,6 +498,10 @@ monomeric_antho_no_leak_2019_percentage_first_point_main_antho_avg_se <-monomeri
   group_by(main_antho, treatment) %>%
   summarise(avg = mean(percent_main_antho), sev = se(percent_main_antho))
 
+
+write.csv(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_avg_se,"data_output/monomeric_antho_no_leak_2019_percentage_first_point_main_antho_avg_se.csv")
+
+
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho%>%
   group_by(main_antho, treatment) %>%
   tally()
@@ -523,10 +530,11 @@ ggsave(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_avg_se, fi
 
 
 
-### ANOVA first point 
+#### ANOVA first point#### 
 
-###Delphinidins
+####Delphinidins####
 
+library(agricolae)
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_first_point_main_antho %>%
   filter(main_antho == "Delphinidins") 
 
@@ -566,7 +574,7 @@ monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist<-monom
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist$percent_main_antho)
 
-####Cyanidins 
+####Cyanidins ####
 
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_first_point_main_antho %>%
   filter(main_antho == "Cyanidins") 
@@ -607,7 +615,7 @@ monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist<-monom
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist$percent_main_antho)
 
-####Malvidins
+####Malvidins####
 
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_first_point_main_antho %>%
   filter(main_antho == "Malvidins") 
@@ -649,7 +657,7 @@ monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist<-monom
 hist(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist$percent_main_antho)
 
 
-##### Petunidins 
+##### Petunidins ####
 
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_first_point_main_antho %>%
   filter(main_antho == "Petunidins") 
@@ -690,7 +698,7 @@ monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist<-monom
   filter(treatment == 3)
 hist(monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova_hist$percent_main_antho)
 
-#### Peonidins 
+#### Peonidins ####
 
 monomeric_antho_no_leak_2019_percentage_first_point_main_antho_anova <-monomeric_antho_no_leak_2019_percentage_first_point_main_antho %>%
   filter(main_antho == "Peonidins") 
