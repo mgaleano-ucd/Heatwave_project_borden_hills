@@ -2,8 +2,9 @@ library(grDevices)
 library(tidyverse)
 library(lubridate)
 library(ggplot2)
-library(viridis)
 library(viridisLite)
+library(viridis)
+
 
 se <- function(x) sqrt(var(x)/length(x))
 
@@ -47,7 +48,7 @@ somers_data_2019<- somers_data_2019%>%
 somers_berry_data<- somers_data_2019 %>%
   filter(!Block_id == "B1R2")
 
-
+str(somers_berry_data$Date_sampled)
 
 somers_berry_data<-somers_berry_data %>%
   filter(!is.na (Rep))%>%
@@ -69,23 +70,47 @@ library(ggpubr)
 somers_and_basic_berry_chemisrty_plot <-somers_and_basic_berry_chemisrty%>%
   ggplot(aes(Brix, total_Antho_mg_berry)) +
   geom_point(alpha =1, aes(color = treatment, group =treatment)) +
-  geom_smooth(method = "lm", se =FALSE, formula = y ~ x, aes(color = treatment, group =treatment)) +
+  geom_smooth(method = "lm", se= FALSE, formula = y ~ poly(x,3), aes(color = treatment, group =treatment)) +
   stat_regline_equation(aes(color = treatment, group =treatment, label =  paste(..eq.label.., ..rr.label.., sep = "~~~~")),
-                        formula = y ~ x, size = 3.5
+                        formula = y ~ poly(x,3), size = 3.5
   ) +
   theme_classic() +
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
-  ylab ("Total anthocyanin mg/berry") +
-  xlab("Brix (º Bx) ") +
-  theme(axis.title.y = element_text(size=14, family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  ylab ("Total anthocyanins (mg/berry)") +
+  xlab("Total soluble solids (ºBx) ") +
+  theme(axis.title.y = element_text(size=20, family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
   theme(legend.position = "right") +
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(0,0.9,0.1), limits = c (0,0.9)) +
-  scale_x_continuous (breaks=seq(15,28,2), limits = c (15,28))
+  scale_x_continuous (breaks=seq(15,28,2), limits = c (15,28))  +
+  theme(axis.text.x = element_text(size =18))+
+  theme(axis.text.y = element_text(size =18))
+
+somers_and_basic_berry_chemisrty_plot <-somers_and_basic_berry_chemisrty%>%
+  ggplot(aes(Brix, total_Antho_mg_berry)) +
+  geom_point(alpha =1, aes(color = treatment, group =treatment)) +
+  geom_smooth(method = "lm", se =FALSE, formula = y ~ x, aes(color = treatment, group =treatment)) +
+  stat_fit_glance(aes(color = treatment, group =treatment, label  = sprintf('R^2~"="~%.3f~~italic(P)~"<"~%.2g ', stat(round(r.squared,2)),(p.value = 0.001))),formula = y ~ x, size = 5, parse =TRUE
+  )+
+  theme_classic() +
+  scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
+  ylab ("Total anthocyanins (mg/berry)") +
+  xlab("Total soluble solids (ºBx) ") +
+  theme(axis.title.y = element_text(size=18, family = "serif")) +
+  theme(axis.title.x = element_text(size=18, family = "serif")) +
+  theme(legend.key.size = unit (0.5, "cm")) +
+  theme(legend.key.width = unit(0.2,"cm"))+
+  theme(legend.justification = "center")+
+  theme(legend.position = "right") +
+  theme(legend.title.align = 0)+
+  scale_y_continuous(breaks=seq(0,0.9,0.1), limits = c (0,0.9)) +
+  scale_x_continuous (breaks=seq(15,28,2), limits = c (15,28))  +
+  theme(axis.text.x = element_text(size =16))+
+  theme(axis.text.y = element_text(size =16))
 
 ggsave(somers_and_basic_berry_chemisrty_plot, filename = "figures/somers_and_basic_berry_chemistry_plot.pdf", device = cairo_pdf, 
        width = 8, height = 6)
@@ -115,3 +140,36 @@ brix_and_berry_weight_plot <-somers_and_basic_berry_chemisrty%>%
 ggsave(brix_and_berry_weight_plot, filename = "figures/brix_and_berry_weight_plot.pdf", device = cairo_pdf, 
        width = 8, height = 6)
 
+
+####summary regression lines brix vs total anthocyanins ####
+somers_and_basic_berry_chemisrty_lm<-somers_and_basic_berry_chemisrty%>%
+  select(treatment,total_Antho_mg_berry, Brix)%>%
+  filter(treatment == "1")
+
+somers_and_basic_berry_chemisrty_lm<-  lm(formula = Brix ~ total_Antho_mg_berry, somers_and_basic_berry_chemisrty_lm)
+
+summary(somers_and_basic_berry_chemisrty_lm)
+summary(somers_and_basic_berry_chemisrty_lm)$coefficient
+confint(somers_and_basic_berry_chemisrty_lm)
+
+
+somers_and_basic_berry_chemisrty_lm<-somers_and_basic_berry_chemisrty%>%
+  select(treatment,total_Antho_mg_berry, Brix)%>%
+  filter(treatment == "2")
+
+somers_and_basic_berry_chemisrty_lm<-  lm(formula = Brix ~ total_Antho_mg_berry, somers_and_basic_berry_chemisrty_lm)
+
+summary(somers_and_basic_berry_chemisrty_lm)
+summary(somers_and_basic_berry_chemisrty_lm)$coefficient
+confint(somers_and_basic_berry_chemisrty_lm)
+
+
+somers_and_basic_berry_chemisrty_lm<-somers_and_basic_berry_chemisrty%>%
+  select(treatment,total_Antho_mg_berry, Brix)%>%
+  filter(treatment == "3")
+
+somers_and_basic_berry_chemisrty_lm<-  lm(formula = Brix ~ total_Antho_mg_berry, somers_and_basic_berry_chemisrty_lm)
+
+summary(somers_and_basic_berry_chemisrty_lm)
+summary(somers_and_basic_berry_chemisrty_lm)$coefficient
+confint(somers_and_basic_berry_chemisrty_lm)
