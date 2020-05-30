@@ -112,9 +112,9 @@ no_leak_mcp_mg_berry_OK_DATE<-ggplot(no_leak_mcp_first_results_ave_stdv_mg_berry
   ylab ("mg tannin/berry") +
   ggtitle( " Total tannins") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Time") +
-  theme(axis.title.y = element_text(size=14, family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  xlab("Date") +
+  theme(axis.title.y = element_text(size=21, family = "serif")) +
+  theme(axis.title.x = element_text(size=21, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -124,7 +124,9 @@ no_leak_mcp_mg_berry_OK_DATE<-ggplot(no_leak_mcp_first_results_ave_stdv_mg_berry
   scale_x_date(date_labels="%b %d", date_breaks = ("7 day")) +
   geom_vline(xintercept = as.Date("08-12-2019", format ="%m-%d-%Y"), color =  "darkgrey", size = 0.5, linetype ="dashed") +
   geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed")+
-  annotate("text", x = as.Date("08-14-2019", format= "%m-%d-%Y"), y = 3.5, label = "HW2", size = 4.1) 
+  annotate("text", x = as.Date("08-14-2019", format= "%m-%d-%Y"), y = 3.5, label = "HW2", size = 7, family ="serif") +
+  theme(axis.text.x = element_text(size =18))+
+  theme(axis.text.y = element_text(size =18))
 
 
 
