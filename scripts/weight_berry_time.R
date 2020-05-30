@@ -11,9 +11,13 @@ se <- function(x) sqrt(var(x)/length(x))
 
 berry_weight_vs_time_table<- berry_weight_vs_time %>%
   select(Date_sampled, Block_id, Rep,Berry_weight, Skin_weight_aft, treatment) %>%
+  filter(!Block_id == "B1R2")%>%
   mutate(berry_weight_one_berry = (Berry_weight/60))%>%
   group_by(Date_sampled, treatment)%>%
   summarise (avg = mean(berry_weight_one_berry), sev = se(berry_weight_one_berry), stdv = sd(berry_weight_one_berry))
+
+
+write.csv(berry_weight_vs_time_table,"data_output/berry_weight_vs_time_table.csv")
 
 berry_weight_vs_time_table$Date_sampled<- mdy(berry_weight_vs_time_table$Date_sampled)
 
@@ -54,6 +58,64 @@ berry_weight_vs_date<-ggplot(berry_weight_vs_time_table, aes(Date_sampled, avg, 
 
 ggsave(berry_weight_vs_date, filename = "figures/berry_weight_vs_date.pdf", device = cairo_pdf, 
        width = 9, height = 7)
+
+####ANOVA####
+
+
+berry_weight_vs_time
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point<-read.csv("data_output/monomeric_antho_perc_tri_di_hydroxylated_first_point.csv")
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova <-monomeric_antho_perc_tri_di_hydroxylated_first_point %>%
+  filter(hydroxylation == "trihydroxylated") 
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova %>%
+  group_by(treatment)%>%
+  tally()
+
+
+is.factor(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment)
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment<- format(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment)
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment<- as.factor(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment)
+
+is.factor(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova$treatment)
+
+ggplot(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova, aes (treatment,percentage_hydro, group =treatment)) +
+  geom_boxplot(aes(fill = treatment, color =treatment)) +
+  geom_point()
+
+anova_mono_antho <- aov (percentage_hydro~treatment, monomeric_antho_perc_tri_di_hydroxylated_first_point_anova )
+summary (anova_mono_antho)
+
+str(anova_mono_antho)
+summary(anova_mono_antho$call)
+
+library(xtable)
+trial<-xtable(anova_mono_antho)
+
+lapply(summary(anova_mono_antho), xtable)
+library(agricolae)
+
+tukey<-TukeyHSD(aov(percentage_hydro~treatment, monomeric_antho_perc_tri_di_hydroxylated_first_point_anova))
+
+(test<- HSD.test(anova_mono_antho, trt = "treatment", alpha =0.05, unbalanced = "TRUE"))
+
+str(test)
+as.data.frame(test$groups)
+
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist<-monomeric_antho_perc_tri_di_hydroxylated_first_point_anova %>%
+  filter(treatment == 1)
+hist(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist$percentage_hydro)
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist<-monomeric_antho_perc_tri_di_hydroxylated_first_point_anova %>%
+  filter(treatment == 2)
+hist(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist$percentage_hydro)
+
+monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist<-monomeric_antho_perc_tri_di_hydroxylated_first_point_anova %>%
+  filter(treatment == 3)
+hist(monomeric_antho_perc_tri_di_hydroxylated_first_point_anova_hist$percentage_hydro)
 
 
 
