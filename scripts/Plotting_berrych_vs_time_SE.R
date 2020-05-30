@@ -29,6 +29,9 @@ berry_chemistry_borden_hills_2019_grouped <-berry_chemistry_borden_hills_2019 %>
   group_by(treatment, date) %>%
   summarise(avg_brix = mean(Brix), se_brix = se(Brix), avg_ph = mean(pH), se_ph = se (pH), avg_ta = mean(TA), se_ta = se (TA))
 
+
+write.csv(berry_chemistry_borden_hills_2019_grouped,"data_output/berry_chemistry_borden_hills_2019_grouped.csv")
+
 berry_chemistry_borden_hills_2019 %>%
   group_by(treatment, date) %>%
   tally()
@@ -56,16 +59,16 @@ pd <- position_dodge(1.5)
 #Plot Brix
 
 brix_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_brix, group = treatment, color = treatment)) + 
-  geom_errorbar(aes(ymin=avg_brix-se_brix, ymax=avg_brix+se_brix), width= 3, position=pd, stat = "identity", size =1.02) +
+  geom_errorbar(aes(ymin=avg_brix-se_brix, ymax=avg_brix+se_brix), width= 4, position=pd, stat = "identity", size =0.8) +
   geom_line(alpha =0.7, size =1, position=pd, stat = "identity", linetype = "solid") +
   geom_point(alpha =0.65, position=pd, size=2, stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
-  ylab(label = "Brix (ºBx)") +
+  ylab(label = "Total soluble solids (ºBx)") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Days") +
-  theme(axis.title.y = element_text(size=14, family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  xlab("Date") +
+  theme(axis.title.y = element_text(size=20, family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -73,11 +76,13 @@ brix_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(12,28,2), limits = c (12,28)) +
   scale_x_date(date_labels="%b %d", date_breaks = ("7 day")) +
-  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 28, label = "*", size = 6) +
-  annotate("text", x = as.Date("08-20-2019", format= "%m-%d-%Y"), y = 28, label = "*", size = 6) +
-  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 28, label = "*", size = 6) +
+  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 26.5, label = "*", size = 8) +
+  annotate("text", x = as.Date("08-20-2019", format= "%m-%d-%Y"), y = 26.5, label = "*", size = 8) +
+  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 26.5, label = "*", size = 8) +
   geom_vline(xintercept = as.Date("08-12-2019", format ="%m-%d-%Y"), color =  "darkgrey", size = 0.5, linetype ="dashed") +
-  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed")
+  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed")  +
+  theme(axis.text.x = element_text(size =18, angle=90, vjust = 0.7))+
+  theme(axis.text.y = element_text(size =18))
 
 
 ggsave(brix_BH_2019_2, filename = "figures/brix_BH_2019_2.pdf", device = cairo_pdf, 
@@ -88,16 +93,16 @@ ggsave(brix_BH_2019_2, filename = "figures/brix_BH_2019_2.pdf", device = cairo_p
 #Plot pH 
 
 ph_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_ph, group = treatment, color = treatment)) + 
-  geom_errorbar(aes(ymin=avg_ph-se_ph, ymax=avg_ph+se_ph), width= 3, position=pd, stat = "identity", size =1.02) +
+  geom_errorbar(aes(ymin=avg_ph-se_ph, ymax=avg_ph+se_ph), width= 4, position=pd, stat = "identity", size =0.8) +
   geom_line(alpha =0.7, size =1, position=pd, stat = "identity", linetype = "solid") +
   geom_point(alpha =0.65, position=pd, size=2, stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   ylab(label = "pH") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Days") +
-  theme(axis.title.y = element_text(size=14, family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  xlab("Date") +
+  theme(axis.title.y = element_text(size=20, family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -105,12 +110,14 @@ ph_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_ph
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(2.7,3.9,0.15), limits = c (2.7,3.9)) +
   scale_x_date(date_labels="%b %d", date_breaks = ("7 day")) +
-  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 6) +
-  annotate("text", x = as.Date("08-20-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 6) +
-  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 6) +
-  annotate("text", x = as.Date("09-18-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 6) +
+  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 8) +
+  annotate("text", x = as.Date("08-20-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 8) +
+  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 8) +
+  annotate("text", x = as.Date("09-18-2019", format= "%m-%d-%Y"), y = 3.85, label = "*", size = 8) +
   geom_vline(xintercept = as.Date("08-12-2019", format ="%m-%d-%Y"), color =  "darkgrey", size = 0.5, linetype ="dashed") +
-  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed")
+  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed") +
+  theme(axis.text.x = element_text(size =18, angle=90, vjust = 0.7))+
+  theme(axis.text.y = element_text(size =18))
 
 
 
@@ -121,16 +128,16 @@ ggsave(ph_BH_2019_2, filename = "figures/pH_Bh_2019_2.pdf", device = cairo_pdf,
 #Plot TA
 
 ta_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_ta, group = treatment, color = treatment)) + 
-  geom_errorbar(aes(ymin=avg_ta-se_ta, ymax=avg_ta+se_ta), width= 3, position=pd, stat = "identity", size =1.02) +
+  geom_errorbar(aes(ymin=avg_ta-se_ta, ymax=avg_ta+se_ta), width= 4, position=pd, stat = "identity", size =0.8) +
   geom_line(alpha =0.7, size =1, position=pd, stat = "identity", linetype = "solid") +
   geom_point(alpha =0.65, position=pd, size=2, stat = "identity") + 
   theme_classic()+
   scale_colour_viridis_d(direction = -1, begin = 0.05, end = 0.93, name = "Treatment", labels = c("Baseline (60% ET)", "2x baseline ET", "3x baseline ET"))+
   ylab(label = "Titrable acidity (g/L)") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Days") +
-  theme(axis.title.y = element_text(size=14, family = "serif")) +
-  theme(axis.title.x = element_text(size=14, family = "serif")) +
+  xlab("Date") +
+  theme(axis.title.y = element_text(size=20, family = "serif")) +
+  theme(axis.title.x = element_text(size=20, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
   theme(legend.key.width = unit(0.2,"cm"))+
   theme(legend.justification = "center")+
@@ -138,11 +145,13 @@ ta_BH_2019_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date, avg_ta
   theme(legend.title.align = 0)+
   scale_y_continuous(breaks=seq(2,20,2), limits = c (2,20)) +
   scale_x_date(date_labels="%b %d", date_breaks = ("7 day")) +
-  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 6) +
-  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 6) +
-  annotate("text", x = as.Date("09-21-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 6) +
+  annotate("text", x = as.Date("08-15-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 8) +
+  annotate("text", x = as.Date("09-03-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 8) +
+  annotate("text", x = as.Date("09-21-2019", format= "%m-%d-%Y"), y = 19, label = "*", size = 8) +
   geom_vline(xintercept = as.Date("08-12-2019", format ="%m-%d-%Y"), color =  "darkgrey", size = 0.5, linetype ="dashed") +
-  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed")
+  geom_vline(xintercept = as.Date("08-16-2019", format ="%m-%d-%Y"), color = "darkgrey", size = 0.5, linetype ="dashed") +
+  theme(axis.text.x = element_text(size =18, angle=90, vjust = 0.7))+
+  theme(axis.text.y = element_text(size =18))
 
 
 
@@ -152,7 +161,7 @@ ggsave(ta_BH_2019_2, filename = "figures/ta_BH_2019_2.pdf", device = cairo_pdf,
 library(cowplot)
 panel_plot_berry_chemistry_2019_se_ano1<- plot_grid (brix_BH_2019_2, ph_BH_2019_2, ta_BH_2019_2, ncol=3, nrow = 1)
 
-ggsave(panel_plot_berry_chemistry_2019_se_ano1, filename = "figures/panel_plot_berry_chemistry_2019_se.pdf", device = cairo_pdf, width = 17, height = 6)
+ggsave(panel_plot_berry_chemistry_2019_se_ano1, filename = "figures/panel_plot_berry_chemistry_2019_se.pdf", device = cairo_pdf, width = 20, height = 6)
 
 #####-------------------------------#########################
 
@@ -170,7 +179,7 @@ brix_BH_2019_avg_se_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(dat
   ylab(label = "Brix (ºBx)") +
   ggtitle( " Brix vs time BH 2019") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Days") +
+  xlab("Date") +
   theme(axis.title.y = element_text(size=16, face = "bold", family = "serif")) +
   theme(axis.title.x = element_text(size=14, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
@@ -224,7 +233,7 @@ ta_BH_2019_avg_se_2<-ggplot(berry_chemistry_borden_hills_2019_grouped, aes(date,
   ylab(label = "TA (g/L)") +
   ggtitle( " TA vs time BH 2019") +
   theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold", family = "serif")) +
-  xlab("Days") +
+  xlab("Date") +
   theme(axis.title.y = element_text(size=16, face = "bold", family = "serif")) +
   theme(axis.title.x = element_text(size=14, family = "serif")) +
   theme(legend.key.size = unit (0.5, "cm")) +
